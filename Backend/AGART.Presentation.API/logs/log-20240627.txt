@@ -1,0 +1,3 @@
+2024-06-27 19:35:31.800 +03:00 [INF] AGART.API is starting up.
+2024-06-27 19:42:49.908 +03:00 [INF] AGART.API is starting up.
+2024-06-27 19:49:21.861 +03:00 [INF] AGART.API is starting up.

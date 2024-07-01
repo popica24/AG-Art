@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "bpUqjem//w9ISz0mNIHt1eY8yWKGzYJFQuU0l8Gr6X6nK7XSzUSwWtMZiIPWbFRhQId/B7SrDHTdqr6CJF5bZw==",
+  "success": true,
+  "projectFilePath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/AGART.Application.csproj",
+  "expectedPackageFiles": [
+    "/home/popica/.nuget/packages/erroror/2.0.1/erroror.2.0.1.nupkg.sha512",
+    "/home/popica/.nuget/packages/mapster/7.4.0/mapster.7.4.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/mapster.core/1.2.1/mapster.core.1.2.1.nupkg.sha512",
+    "/home/popica/.nuget/packages/mapster.dependencyinjection/1.0.1/mapster.dependencyinjection.1.0.1.nupkg.sha512",
+    "/home/popica/.nuget/packages/mediatr/12.3.0/mediatr.12.3.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/home/popica/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/microsoft.win32.systemevents/6.0.0/microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
+    "/home/popica/.nuget/packages/stripe.net/45.1.0/stripe.net.45.1.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/system.configuration.configurationmanager/6.0.0/system.configuration.configurationmanager.6.0.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/system.drawing.common/6.0.0/system.drawing.common.6.0.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/system.security.accesscontrol/6.0.0/system.security.accesscontrol.6.0.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/system.security.cryptography.protecteddata/6.0.0/system.security.cryptography.protecteddata.6.0.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/system.security.permissions/6.0.0/system.security.permissions.6.0.0.nupkg.sha512",
+    "/home/popica/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

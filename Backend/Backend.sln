@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGART.Domain", "AGART.Domain\AGART.Domain.csproj", "{E63201E8-591C-4A89-A622-7C54256F820C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGART.Services", "AGART.Services\AGART.Services.csproj", "{17CC22F8-BAAC-479F-BEEA-12BD44CCA5AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGART.Application", "AGART.Application\AGART.Application.csproj", "{B12C282C-436D-48BE-AAC3-760056AF2BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGART.Presentation.API", "AGART.Presentation.API\AGART.Presentation.API.csproj", "{784255B2-6277-47AE-8015-38362CE2CA2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E63201E8-591C-4A89-A622-7C54256F820C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E63201E8-591C-4A89-A622-7C54256F820C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E63201E8-591C-4A89-A622-7C54256F820C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E63201E8-591C-4A89-A622-7C54256F820C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17CC22F8-BAAC-479F-BEEA-12BD44CCA5AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CC22F8-BAAC-479F-BEEA-12BD44CCA5AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CC22F8-BAAC-479F-BEEA-12BD44CCA5AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CC22F8-BAAC-479F-BEEA-12BD44CCA5AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{784255B2-6277-47AE-8015-38362CE2CA2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{784255B2-6277-47AE-8015-38362CE2CA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{784255B2-6277-47AE-8015-38362CE2CA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{784255B2-6277-47AE-8015-38362CE2CA2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B12C282C-436D-48BE-AAC3-760056AF2BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B12C282C-436D-48BE-AAC3-760056AF2BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B12C282C-436D-48BE-AAC3-760056AF2BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B12C282C-436D-48BE-AAC3-760056AF2BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

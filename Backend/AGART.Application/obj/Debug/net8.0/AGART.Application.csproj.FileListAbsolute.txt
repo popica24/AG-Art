@@ -1,0 +1,15 @@
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/bin/Debug/net8.0/AGART.Application.deps.json
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/bin/Debug/net8.0/AGART.Application.dll
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/bin/Debug/net8.0/AGART.Application.pdb
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/bin/Debug/net8.0/AGART.Domain.dll
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/bin/Debug/net8.0/AGART.Domain.pdb
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.csproj.AssemblyReference.cache
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.AssemblyInfoInputs.cache
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.AssemblyInfo.cs
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.csproj.CoreCompileInputs.cache
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.csproj.CopyComplete
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.dll
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/refint/AGART.Application.dll
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.pdb
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/ref/AGART.Application.dll

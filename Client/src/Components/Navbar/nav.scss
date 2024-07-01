@@ -1,0 +1,16 @@
+nav {
+  background-color: #000000;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  .nav-container {
+    height: calc(3em + 5px);
+    section {
+      padding: calc(1em + 5px);
+
+      a {
+        border: solid 1px transparent;
+        padding: 1em;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  webapi:
+    image: docker.io/library/agartapi
+    depends_on:
+      - app_db
+    container_name: agart-services
+    ports:
+      - "8088:80"
+    build:
+      context: ./ag-art-api
+      dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=app_db;Port=5432;Database=AgArtLamps;Pooling=true;
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - dev
+
+  app_db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: AgArtLamps
+    ports:
+      - "5433:5432"
+    networks:
+      - dev
+    volumes:
+      - app_data:/var/lib/postgresql/data
+      
+
+networks:
+  dev:
+
+volumes:
+  app_data:
