@@ -19,7 +19,7 @@ namespace AGART.Presentation.API.Common.Mappings
         {
             config.NewConfig<CreateProductRequest, Product>()
             .Map(dest => dest.Name, src => src.Name)
-            .Map(dest => dest.CategoryId, src => src.CategoryId.ToLower().Replace(@"\s+", "-"))
+            .Map(dest => dest.CategoryId, src => src.CategoryId)
             .Map(dest => dest.Material, src => src.Material)
             .Map(dest => dest.Description, src => src.Description)
             .Map(dest => dest.Dimensions, src => src.Width + " x " + src.Height + " x " + src.Length)

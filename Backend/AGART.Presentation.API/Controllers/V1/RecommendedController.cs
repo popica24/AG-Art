@@ -6,8 +6,9 @@ using AGART.Application.ProductModule.Queries.GetRecommended;
 
 namespace AGART.Presentation.API.Controllers.V1
 {
+    [ApiVersion(1)]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{v:apiVersion}/[controller]")]
     public class Recommended(ISender sender) : ControllerBase
     {
         /// <summary>

@@ -162,3 +162,4 @@
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Presentation.API/bin/Debug/net8.0/System.Web.Http.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Presentation.API/bin/Debug/net8.0/System.Web.Http.Cors.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Presentation.API/bin/Debug/net8.0/Newtonsoft.Json.Bson.dll
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Presentation.API/obj/Debug/net8.0/AGART.Presentation.API.sourcelink.json

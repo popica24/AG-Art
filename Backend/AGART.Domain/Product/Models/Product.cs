@@ -17,7 +17,9 @@ public class Product : IEntity
     public string StripeId { get; set; }
     public string[] Keywords { get; set; }
 
-    public string CategoryId { get; set; }
+    public bool Visible { get; set; }
+
+    public int CategoryId { get; set; }
 
     public ICollection<Variant> Variants { get; set; }
     public Category.Models.Category Category { get; set; }

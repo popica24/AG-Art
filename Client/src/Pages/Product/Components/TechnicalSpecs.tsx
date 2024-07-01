@@ -6,22 +6,24 @@ import {
 import { useState } from "react";
 import { removeHyphens } from "../../../Utils/RemoveHyphens";
 import { Link } from "react-router-dom";
+import { IntToCategory } from "../../../Utils/IntToCategory";
 type Props = {
-  category: string;
+  category: number;
   dimensions: string;
   lightSource: string;
   material: string;
 };
 
 const TechnicalSpecs = (props: Props) => {
-  const CATEGORY = removeHyphens(props.category) ?? ""
-  const DISPLAY_CATEGORY = CATEGORY?.charAt(0).toUpperCase() + CATEGORY?.slice(1) 
-    console.log(CATEGORY.charAt(0).toUpperCase() + CATEGORY.slice(1));
-    
+  const CATEGORY = IntToCategory(props.category) ?? "";
+  const DISPLAY_CATEGORY = removeHyphens(
+    CATEGORY?.charAt(0).toUpperCase() + CATEGORY?.slice(1)
+  );
+
   const [open, setOpen] = useState(0);
   const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
-  if(CATEGORY == ""){
-    return <></>
+  if (CATEGORY == "") {
+    return <></>;
   }
   return (
     <div className="flex flex-col justify-start container mx-auto px-8 text-white my-4 lg:my-6 font-thin">
@@ -31,8 +33,11 @@ const TechnicalSpecs = (props: Props) => {
       <div className="flex flex-col md:flex-row items-start justify-between">
         <div className="flex flex-col">
           <span className="text-lg">Categorie</span>
-          <Link to={`/${CATEGORY}`} className="text-base underline underline-offset-[6px]">
-          {DISPLAY_CATEGORY}
+          <Link
+            to={`/${CATEGORY}`}
+            className="text-base underline underline-offset-[6px]"
+          >
+            {DISPLAY_CATEGORY}
           </Link>
           <span className="text-lg mt-10">Material</span>
           <span className="text-base">{props.material}</span>

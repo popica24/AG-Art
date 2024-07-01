@@ -8,6 +8,8 @@ public interface IUnitOfWork : IDisposable
 
     public IVariantRepository Variant { get; }
 
+    public ICategoryRepository Category { get; }
+
     public Task SaveChangesAsync(CancellationToken cancellationToken);
 
 }

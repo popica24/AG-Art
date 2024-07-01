@@ -23,7 +23,7 @@ export type ToDoLamp = {
     stripeId: string,
     percentOff?:number,
     keywords:string[],
-    categoryId:string;
+    categoryId:number;
     variants: Variant[]
 }
 export type Variant = {
@@ -61,7 +61,7 @@ export type UserContactProps = {
 
 export type PostProduct = {
   name:string;
-  categoryId:string;
+  categoryId:number;
   material:string;
   description:string;
   height:number;

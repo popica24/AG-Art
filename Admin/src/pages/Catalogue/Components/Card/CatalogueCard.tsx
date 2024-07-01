@@ -6,8 +6,9 @@ import KeywordRow from "./Keyword/KeywordRow";
 import { Product } from "../../../../utils/types";
 import EditableRow from "./EditableRow";
 import { propertyOf } from "../../../../utils/NameOf";
-import { removeHyphens } from "../../../../utils/RemoveHyphens";
 import DescriptionRow from "./DescriptionRow";
+import CategoryRow from "./CategoryRow";
+import { IntToCategory } from "../../../../utils/IntToCategory";
 
 const CatalogueCard = (product: Product) => {
   if (!product.id || !product.price) {
@@ -20,11 +21,10 @@ const CatalogueCard = (product: Product) => {
         <span className="mt-2">Caracteristici</span>
         <span className="my-2 w-full border-t-[.2px] border-b-[.2px] border-[#9e9e9e69] px-6 py-2">
           <ul className="list-disc">
-            <EditableRow
+            <CategoryRow
               id={product.id}
-              field="Categorie"
-              propName={propertyOf<Product>("categoryId")}
-              name={removeHyphens(product.categoryId)!}
+              name={IntToCategory(product.categoryId)!}
+              categoryId={product.categoryId}
             />
             <EditableRow
               id={product.id}

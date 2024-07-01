@@ -44,7 +44,7 @@ public class ProductRepository(AppDbContext context, ICacheRepository cacheRepos
         .Include(p => p.Variants)
         .OrderByDescending(p => p.Id)
         .Take(5)
-        .Where(p => p.CategoryId != "becuri")
+        .Where(p => p.CategoryId != 4)
         .Select(p => new ProductSearchResultDTO(p))
         .ToListAsync();
 
@@ -66,7 +66,7 @@ public class ProductRepository(AppDbContext context, ICacheRepository cacheRepos
        .Include(p => p.Variants)
        .OrderBy(r => Guid.NewGuid())
        .Take(5)
-       .Where(p => p.CategoryId != "becuri")
+       .Where(p => p.CategoryId != 4)
        .Select(p => new ProductSearchResultDTO(p))
        .ToListAsync();
 

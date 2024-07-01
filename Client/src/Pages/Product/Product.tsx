@@ -4,6 +4,7 @@ import TechnicalSpecs from "./Components/TechnicalSpecs";
 import { useQuery } from "react-query";
 import RecommandedProducts from "../../Components/RecommandedProducts/RecommandedProducts";
 import { useProducts } from "../../Contexts/ProductContext";
+import { useEffect } from "react";
 
 const Product = () => {
   const { productId } = useParams();
@@ -20,6 +21,13 @@ const Product = () => {
       return productRepository?.get(Number(productId));
     },
   });
+  useEffect(() => {
+    if (response?.data?.name)
+      document.title = `AG Art | ${response?.data?.name}`;
+    else{
+      document.title = "AG Art | Loading..."
+    }
+  }, [response?.data?.name]);
   if (
     isLoading ||
     error ||

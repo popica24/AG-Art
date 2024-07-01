@@ -17,3 +17,4 @@
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.pdb
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.genruntimeconfig.cache
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/ref/AGART.Services.dll
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.sourcelink.json

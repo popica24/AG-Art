@@ -10,3 +10,4 @@
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/refint/AGART.Domain.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.pdb
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/ref/AGART.Domain.dll
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.sourcelink.json

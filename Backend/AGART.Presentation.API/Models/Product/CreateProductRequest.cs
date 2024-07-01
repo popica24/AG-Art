@@ -2,7 +2,7 @@ namespace AGART.Presentation.API.Models.Product;
 
 public record CreateProductRequest(
 string Name,
-string CategoryId,
+int CategoryId,
 string? Material,
 string Description,
 decimal Height,

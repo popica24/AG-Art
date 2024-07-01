@@ -47,15 +47,19 @@ namespace AGART.Services.Configuration
                 return;
             }
             var categories = new List<Category>
-            {
-                new() {Id = "pendule"},
-                new() {Id = "lampadare-de-podea"},
-                new() {Id = "lampi-de-masa"},
-                new() {Id = "abajururi-din-lemn"},
-                new() {Id = "aplice-de-perete"},
-                new() {Id = "becuri"},
-                new() {Id = "tablouri-din-lemn"},
-                new() {Id = "articole-sezoniere"},
+            {   new() {Id = 1,CategoryName = "abajururi-din-lemn"},
+                new() {Id = 2,CategoryName = "aplice-de-perete"},
+                new() {Id = 3,CategoryName = "articole-sezoniere"},
+                new() {Id = 4,CategoryName = "becuri"},
+                new() {Id = 5,CategoryName = "lampadare-de-podea"},
+                new() {Id = 6,CategoryName = "pendule"},
+                new() {Id = 7,CategoryName = "tablouri-din-lemn"},
+                new() {Id = 8,CategoryName = "lampi-de-masa"},
+
+
+
+
+
             };
             context.Category.AddRange(categories);
             context.SaveChanges();

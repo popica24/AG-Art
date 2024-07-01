@@ -14,8 +14,15 @@ public class SearchProductQueryHandler(IUnitOfWork uow) : IRequestHandler<Search
         {
             var query = uow.Products.Get();
 
-            if (!string.IsNullOrEmpty(request.Parameters.CategoryId))
+            if (request.Parameters.CategoryId.HasValue)
             {
+                var categoryExists = await uow.Category.CategoryExists(request.Parameters.CategoryId.Value);
+
+                if (!categoryExists)
+                {
+                    return Errors.Category.CategoryDoesNotExist();
+                }
+
                 query = query.Where(product => product.CategoryId == request.Parameters.CategoryId);
             }
 

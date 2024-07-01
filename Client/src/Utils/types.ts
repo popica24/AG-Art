@@ -8,7 +8,7 @@ export type Product = {
     price?:number,
     percentOff?:number,
     keywords:string[],
-    categoryId:string;
+    categoryId:number;
     variants: Variant[]
 }
 
@@ -20,7 +20,7 @@ export type Variant = {
 }
 
 export type ProductQueryParameters = {
-    categoryId?:string,
+    categoryId?:number,
     Material?:string,
     LightSource?:string,
     Discounted?:boolean,

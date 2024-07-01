@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import RecommandedProducts from "../../Components/RecommandedProducts/RecommandedProducts";
-const API_URL = import.meta.env.VITE_API_URL
+const API_URL = import.meta.env.VITE_API_URL;
 const Success = () => {
   const queryParam = new URLSearchParams(window.location.search);
   const sessionId = queryParam.get("session_id");
   const [isError, setIsError] = useState(false);
   const [order, setOrder] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     fetchSession();
   }, []);
@@ -22,10 +23,12 @@ const Success = () => {
     setOrder(data);
     setIsError(false);
     setIsLoading(false);
+    document.title = "AG Art | Success";
   };
   const handleError = () => {
     setIsError(true);
     setIsLoading(false);
+    document.title = "AG Art | Failed";
   };
   if (isLoading)
     return (

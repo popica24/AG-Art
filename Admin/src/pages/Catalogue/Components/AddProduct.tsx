@@ -6,6 +6,7 @@ import { ref, uploadBytes } from "firebase/storage";
 import { imageDb } from "../../../utils/firebase";
 import { useProducts } from "../../../context/ProductContext";
 import { PostProduct } from "../../../utils/types";
+import { CategoryToInt } from "../../../utils/CategoryToInt";
 
 type Props = {
   handleClose: () => void;
@@ -14,6 +15,7 @@ type Props = {
 type Inputs = {
   name: string;
   category: string;
+  description: string;
   material: string;
   height: string;
   width: string;
@@ -49,7 +51,7 @@ const AddProduct = (props: Props) => {
 
       const lampModel: PostProduct = {
         name: data.name,
-        categoryId: category,
+        categoryId: CategoryToInt(category),
         material: data.material,
         height: Number(data.height),
         width: Number(data.width),
@@ -57,7 +59,7 @@ const AddProduct = (props: Props) => {
         weight: Number(data.weight),
         lightSource: data.lightSource,
         price: data.price,
-        description: "asdfasad",
+        description: data.description,
         keywords: keywords,
       };
       const result = await products?.create(lampModel);

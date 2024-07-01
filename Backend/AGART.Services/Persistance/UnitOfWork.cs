@@ -10,6 +10,7 @@ public class UnitOfWork : IUnitOfWork
     public IProductRepository Products { get; private set; }
     public ICarouselRepository Carousel { get; private set; }
     public IVariantRepository Variant { get; private set; }
+    public ICategoryRepository Category { get; private set; }
     public AppDbContext _context { get; set; }
 
     public ICacheRepository _cache { get; set; }
@@ -28,6 +29,7 @@ public class UnitOfWork : IUnitOfWork
         Products = new ProductRepository(_context, _cache);
         Carousel = new CarouselRepository(_context);
         Variant = new VariantRepository(_context);
+        Category = new CategoryRepository(_context);
     }
 
     protected virtual void Dispose(bool disposing)

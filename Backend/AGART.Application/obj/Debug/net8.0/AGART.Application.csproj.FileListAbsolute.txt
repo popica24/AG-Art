@@ -13,3 +13,4 @@
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/refint/AGART.Application.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.pdb
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/ref/AGART.Application.dll
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.sourcelink.json

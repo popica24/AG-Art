@@ -11,6 +11,9 @@ const Results = () => {
   const keywordsQuery = searchParams.get("keywords");
   const [products, setProducts] = useState<Array<ProductCardProps>>();
   const search = useSearch();
+  useEffect(() => {
+    document.title = "AG Art | Catalogue";
+  }, []);
   const fetchProducts = async () => {
     setLoading(true);
     try {

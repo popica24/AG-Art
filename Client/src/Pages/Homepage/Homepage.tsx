@@ -3,7 +3,11 @@ import HorizontalCarousel from "./Components/HorizontalCarousel";
 import AboutUs from "./Components/AboutUs";
 import ProductShowcase from "./Components/ProductShowcase";
 import Banners from "./Components/Banners";
+import { useEffect } from "react";
 const Homepage = () => {
+  useEffect(() => {
+    document.title = "AG Art | Homepage";
+  }, []);
   return (
     <div className="text-white bg-black mt-[115.71px] md:mt-[110px] z-10">
       <div className="flex justify-start container mx-auto px-8">
