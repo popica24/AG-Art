@@ -12,7 +12,7 @@ export type ToDoLamp = {
     clientName: string;
   }
 
-  export type Product = {
+  export interface Product  {
     id?:number,
     name:string,
     material:string,
@@ -24,6 +24,7 @@ export type ToDoLamp = {
     percentOff?:number,
     keywords:string[],
     categoryId:number;
+    visible: boolean;
     variants: Variant[]
 }
 export type Variant = {

@@ -3,7 +3,6 @@ import { useProducts } from "../../../../context/ProductContext";
 import { Product } from "../../../../utils/types";
 import { CategoryToInt } from "../../../../utils/CategoryToInt";
 import { IntToCategory } from "../../../../utils/IntToCategory";
-import { CiMoneyCheck1 } from "react-icons/ci";
 import { BiCheck } from "react-icons/bi";
 
 type Props = {

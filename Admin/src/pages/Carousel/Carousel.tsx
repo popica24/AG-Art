@@ -2,11 +2,9 @@ import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { imageDb } from "../../utils/firebase";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { useCarousel } from "../../context/CarouselContext";
 import { CarouselProps } from "../../utils/types";
-import { CiCircleCheck, CiEdit } from "react-icons/ci";
-import { Gi3dGlasses, GiChicken } from "react-icons/gi";
+import { CiEdit } from "react-icons/ci";
 import { CgCheck, CgClose } from "react-icons/cg";
 
 const Carousel = () => {
@@ -27,7 +25,7 @@ const Carousel = () => {
 
       const photos = await Promise.all(photosPromises);
 
-      let tiles: Array<CarouselProps> = [];
+      const tiles: Array<CarouselProps> = [];
 
       photos.map((photo, i) => {
         tiles.push({
@@ -77,7 +75,7 @@ const CarouselCard = (props: CarouselProps) => {
         await uploadBytes(photoRef, newPhoto);
       }
       if (header !== props.name && header.trim() !== "") {
-        var newHeader: CarouselProps = {
+        const newHeader: CarouselProps = {
           id: props.id,
           name: header.trim(),
           url: props.url,

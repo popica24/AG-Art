@@ -20,7 +20,7 @@ namespace AGART.Presentation.API.Controllers.V1
             try
             {
                 var stripeEvent = EventUtility.ConstructEvent(json,
-                    Request.Headers["Stripe-Signature"], endpointSecret);
+                    Request.Headers["Stripe-Signature"], endpointSecret, throwOnApiVersionMismatch: false);
 
                 // Handle the event
                 if (stripeEvent.Type == Events.CheckoutSessionCompleted)

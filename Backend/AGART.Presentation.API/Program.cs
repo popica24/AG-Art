@@ -42,6 +42,12 @@ try
             .AllowAnyHeader()
             .AllowAnyMethod();
         });
+        options.AddPolicy("AdminOnly", builder =>
+        {
+            builder.WithOrigins(ADMIN_DOMAIN)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
     });
     var app = builder.Build();
     using (var scope = app.Services.CreateScope())

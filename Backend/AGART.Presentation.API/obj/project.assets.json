@@ -5005,6 +5005,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 8.0.6",
       "Serilog.AspNetCOre >= 8.0.1",
       "Serilog.Sinks.File >= 6.0.0",
+      "Stripe.net >= 45.1.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -5085,6 +5086,10 @@
           "Serilog.Sinks.File": {
             "target": "Package",
             "version": "[6.0.0, )"
+          },
+          "Stripe.net": {
+            "target": "Package",
+            "version": "[45.1.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

@@ -4,7 +4,7 @@ import { useProducts } from "../../../context/ProductContext";
 import { Product } from "../../../utils/types";
 
 const DiscountedProducts = () => {
-  const [products, setProducts] = useState<Product[]>();
+  const [products] = useState<Product[]>();
 
   const adminRepo = useProducts();
 

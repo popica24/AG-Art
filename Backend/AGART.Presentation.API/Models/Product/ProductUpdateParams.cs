@@ -16,9 +16,12 @@ public class ProductUpdateParams
     public long? Price { get; set; }
 
     public string[]? VariantNames { get; set; }
+
     public string? ColorCode { get; set; }
 
     public string[]? Keywords { get; set; }
 
     public int? PercentOff { get; set; }
+
+    public bool Visible { get; set; }
 }

@@ -12,7 +12,7 @@ public class SearchProductQueryHandler(IUnitOfWork uow) : IRequestHandler<Search
     {
         try
         {
-            var query = uow.Products.Get();
+            var query = uow.Products.Get().Where(p => p.Visible);
 
             if (request.Parameters.CategoryId.HasValue)
             {

@@ -6,7 +6,7 @@ import { Product } from "../../utils/types";
 import CatalogueCard from "./Components/Card/CatalogueCard";
 
 const Catalogue = () => {
-  const catalogueRepo = useProducts();
+  const products = useProducts();
   const [edit, setEdit] = useState(false);
   const [catalogue, setCatalogue] = useState<Array<Partial<Product>>>();
 
@@ -15,7 +15,7 @@ const Catalogue = () => {
   }, []);
 
   const fetchCatalogue = async () => {
-    const response = await catalogueRepo?.getAll();
+    const response = await products?.getAll();
 
     setCatalogue(response?.data);
   };
@@ -45,7 +45,12 @@ const Catalogue = () => {
 
         <div className="flex flex-row flex-wrap items-stretch justify-start mx-auto relative">
           {catalogue.map((t) => {
-            return <CatalogueCard {...(t as Product)} key={t.id} />;
+            return (
+              <CatalogueCard
+                {...(t as Product)}
+                key={t.id}
+              />
+            );
           })}
         </div>
       </div>

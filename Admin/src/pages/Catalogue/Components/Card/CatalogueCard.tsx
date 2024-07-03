@@ -9,15 +9,30 @@ import { propertyOf } from "../../../../utils/NameOf";
 import DescriptionRow from "./DescriptionRow";
 import CategoryRow from "./CategoryRow";
 import { IntToCategory } from "../../../../utils/IntToCategory";
+import VisibleButton from "./VisibleButton";
+import { useState } from "react";
 
 const CatalogueCard = (product: Product) => {
+  const [shallowProduct, setShallowProduct] = useState(product);
   if (!product.id || !product.price) {
     return <></>;
   }
   return (
-    <div className="m-4 max-w-[364px] aspect-[3/4] p-4 bg-clip-border rounded-xl bg-gradient-to-tr from-gray-900 to-gray-800 text-white shadow-gray-900/20 shadow-md">
+    <div className="m-4 max-w-[364px] aspect-[3/4] p-4 bg-clip-border rounded-xl bg-gradient-to-tr from-gray-900 to-gray-800 text-white shadow-gray-900/20 shadow-md relative">
       <div className="flex flex-col items-start">
-        <span className="w-full text-center text-2xl">{product.name}</span>
+        <div className="inline-flex items-center w-full justify-between">
+          <span className="w-full text-2xl">{product.name}</span>
+          <VisibleButton
+            visible={shallowProduct.visible}
+            toggle={() =>
+              setShallowProduct({
+                ...shallowProduct,
+                visible: !shallowProduct.visible,
+              })
+            }
+          />
+        </div>
+
         <span className="mt-2">Caracteristici</span>
         <span className="my-2 w-full border-t-[.2px] border-b-[.2px] border-[#9e9e9e69] px-6 py-2">
           <ul className="list-disc">
@@ -27,7 +42,6 @@ const CatalogueCard = (product: Product) => {
               categoryId={product.categoryId}
             />
             <EditableRow
-              id={product.id}
               field="Material"
               propName={propertyOf<Product>("material")}
               name={product.material}
@@ -37,12 +51,14 @@ const CatalogueCard = (product: Product) => {
               field="Dimensiuni"
               propName={propertyOf<Product>("dimensions")}
               name={product.dimensions}
+              categoryId={product.categoryId}
             />
             <EditableRow
               id={product.id}
               field="Sursa de Lumina"
               propName={propertyOf<Product>("lightSource")}
               name={product.lightSource}
+              categoryId={product.categoryId}
             />
             <DescriptionRow
               id={product.id}

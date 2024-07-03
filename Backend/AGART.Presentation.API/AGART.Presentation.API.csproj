@@ -18,6 +18,7 @@
     </PackageReference>
     <PackageReference Include="Serilog.AspNetCOre" Version="8.0.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageReference Include="Stripe.net" Version="45.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 

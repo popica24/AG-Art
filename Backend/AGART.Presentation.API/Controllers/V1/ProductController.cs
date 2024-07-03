@@ -29,6 +29,10 @@ public class ProductController(ISender sender, IMapper mapper) : ControllerBase
     public async Task<IActionResult> Get(int id)
     {
         var result = await sender.Send(new GetProductQuery(id));
+        if (!result.Value.Visible)
+        {
+            return Forbid();
+        }
         return result.MatchFirst(
                 r => Ok(r),
                 firstError => Problem(firstError.Description)

@@ -36,11 +36,7 @@ const AddProduct = (props: Props) => {
     await uploadBytes(heroRef, image!);
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const keywords = data.keywords

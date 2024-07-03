@@ -156,6 +156,9 @@ namespace AGART.Services.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("Visible")
+                        .HasColumnType("boolean");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");

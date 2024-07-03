@@ -7,6 +7,7 @@ type Props = {
   name: string | number;
   field: string;
   propName: keyof Product;
+  categoryId: number;
 };
 
 const EditableRow = (props: Props) => {
@@ -26,6 +27,7 @@ const EditableRow = (props: Props) => {
     e.preventDefault();
     const newLamp: Partial<Product> = {
       [props.propName]: value,
+      categoryId: props.categoryId,
     };
     await productRepo?.update(props.id, newLamp);
   };
