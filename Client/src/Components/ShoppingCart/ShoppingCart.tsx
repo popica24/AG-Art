@@ -1,33 +1,14 @@
-import { Button, Drawer, Typography } from "@material-tailwind/react";
+import { Drawer, Typography } from "@material-tailwind/react";
 import { useCart } from "../../Contexts/ShoppingCartContext";
 import CartItem from "./Components/CartItem";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
-import { FormEvent, useState } from "react";
-const API_URL = import.meta.env.VITE_API_URL;
+import { Link } from "react-router-dom";
 type ShoppingCartProps = {
   isOpen: boolean;
 };
 
 const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
-  const [loading, setLoading] = useState(false);
   const { cartItems, closeCart } = useCart();
-  const handleCheckout = async (e: FormEvent<HTMLFormElement>) => {
-    setLoading(true);
-    e.preventDefault();
-    const data = JSON.stringify(cartItems);
-    const response = await fetch(`${API_URL}/checkout`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: data,
-    });
-
-    const session = await response.json();
-    if (session.url) {
-      window.location.href = session.url;
-    }
-  };
 
   return (
     <div className="z-50">
@@ -61,18 +42,13 @@ const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
             </div>
           )}
           <div className="absolute  bottom-0 left-0 right-0 flex flex-col items-center w-full py-6 bg-black bg-opacity-60 backdrop-blur-sm">
-            <form onSubmit={(e) => handleCheckout(e)}>
-              <Button
-                disabled={loading}
-                type="submit"
-                size="lg"
-                placeholder={undefined}
-                onPointerEnterCapture={undefined}
-                onPointerLeaveCapture={undefined}
-              >
-                {loading ? <>Loading</> : <>Checkout</>}
-              </Button>
-            </form>
+            <a
+              className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm py-3.5 px-7 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none gap-3"
+              href="/checkout"
+            >
+              Checkout
+            </a>
+
             <Typography
               variant="small"
               color="white"

@@ -14,18 +14,18 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ProductProvider>
-      <LatestProvider>
-        <RecommandedProvider>
-          <SearchProvider>
-            <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <ProductProvider>
+        <LatestProvider>
+          <RecommandedProvider>
+            <SearchProvider>
               <ShoppingCartProvider>
                 <RouterProvider router={router} />
               </ShoppingCartProvider>
-            </QueryClientProvider>
-          </SearchProvider>
-        </RecommandedProvider>
-      </LatestProvider>
-    </ProductProvider>
+            </SearchProvider>
+          </RecommandedProvider>
+        </LatestProvider>
+      </ProductProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
