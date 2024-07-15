@@ -11,7 +11,7 @@ const AccountSettings = (props: Props) => {
   return (
     <div className="h-screen">
       <SettingsCard userData={props.userData} />
-      <PaymentSettings />
+
       <NewsletterSettings />
     </div>
   );

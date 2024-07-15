@@ -9,6 +9,7 @@ type Inputs = {
 type Props = {
   setLogin: () => void;
   nextPanel: () => void;
+  close: () => void;
 };
 const CreateAccount = (props: Props) => {
   const [loading, setLoading] = useState(false);
@@ -25,7 +26,7 @@ const CreateAccount = (props: Props) => {
     } catch (err: any) {
       console.error("Error creating user " + err);
     }
-    props.nextPanel();
+    setTimeout(() => props.nextPanel(), 1000);
   };
   return (
     <div
@@ -35,6 +36,7 @@ const CreateAccount = (props: Props) => {
       <div className="relative p-4 w-full max-w-md h-auto md:h-auto">
         <div className="relative bg-white rounded-lg shadow">
           <button
+            onClick={props.close}
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center popup-close"
           >

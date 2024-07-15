@@ -26,7 +26,7 @@ public class UserController : ControllerBase
             var shippingAddress = new ShippingOptions
             {
                 Name = request.FirstName.Trim() + " " + request.LastName.Trim(),
-                Phone = request.ShippingDetails.Phone,
+                Phone = request.PhoneNumber,
                 Address = new AddressOptions
                 {
                     City = request.ShippingDetails.City,
@@ -39,11 +39,11 @@ public class UserController : ControllerBase
 
             var billingAddress = new AddressOptions
             {
-                City = request.BillingDetails.City ?? "",
-                Country = request.BillingDetails.CountryCode ?? "",
-                Line1 = request.BillingDetails.Street ?? "",
-                PostalCode = request.BillingDetails.ZipCode ?? "",
-                State = request.BillingDetails.State ?? ""
+                City = request.BillingDetails.City ?? request.ShippingDetails.City,
+                Country = request.BillingDetails.CountryCode ?? request.ShippingDetails.CountryCode,
+                Line1 = request.BillingDetails.Street ?? request.ShippingDetails.Street,
+                PostalCode = request.BillingDetails.ZipCode ?? request.ShippingDetails.ZipCode,
+                State = request.BillingDetails.State ?? request.ShippingDetails.State
             };
 
             var options = new CustomerCreateOptions

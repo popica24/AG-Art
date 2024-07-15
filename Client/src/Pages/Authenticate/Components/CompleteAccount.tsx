@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAuth } from "../../../Contexts/AuthContext";
 import axios from "axios";
+import { FaCheck } from "react-icons/fa";
 
 type Inputs = {
   FirstName: string;
@@ -22,8 +23,11 @@ type Inputs = {
 
 const CompleteAccount = () => {
   const { currentUser } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setLoading(true);
     const userObject = {
       Email: currentUser?.email,
       FirstName: data.FirstName,
@@ -54,6 +58,8 @@ const CompleteAccount = () => {
         },
       });
     } catch (err: any) {
+      setLoading(false);
+      setSuccess(false);
       console.error("Error at completing account " + err);
     }
   };
@@ -65,26 +71,6 @@ const CompleteAccount = () => {
     >
       <div className="relative p-4 w-full max-w-xl h-full md:h-auto">
         <div className="relative bg-white rounded-lg shadow">
-          <button
-            type="button"
-            className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center popup-close"
-          >
-            <svg
-              aria-hidden="true"
-              className="w-5 h-5"
-              fill="#c6c7c7"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-            <span className="sr-only">Close popup</span>
-          </button>
-
           <div className="p-5">
             <h3 className="text-2xl mb-0.5 font-medium"></h3>
             <p className="mb-4 text-sm font-normal text-gray-800"></p>
@@ -101,6 +87,7 @@ const CompleteAccount = () => {
               <div className="grid grid-cols-2 gap-x-4">
                 <div className="col-span-1">
                   <input
+                    disabled={loading}
                     {...register("FirstName")}
                     type="text"
                     autoComplete="FirstName"
@@ -111,6 +98,7 @@ const CompleteAccount = () => {
                 </div>
                 <div className="col-span-1">
                   <input
+                    disabled={loading}
                     {...register("LastName")}
                     type="text"
                     autoComplete="email"
@@ -122,6 +110,7 @@ const CompleteAccount = () => {
               </div>
               <div className="my-4">
                 <input
+                  disabled={loading}
                   {...register("PhoneNumber")}
                   type="text"
                   autoComplete="PhoneNumber"
@@ -144,6 +133,7 @@ const CompleteAccount = () => {
                 {/* Shipping */}
                 <div className="col-span-1">
                   <input
+                    disabled={loading}
                     {...register("ShippingPhone")}
                     type="text"
                     autoComplete="ShippingPhone"
@@ -152,6 +142,7 @@ const CompleteAccount = () => {
                     placeholder="Numar Telefon"
                   />
                   <input
+                    disabled={loading}
                     {...register("ShippingStreet")}
                     type="text"
                     autoComplete="ShippingPhone"
@@ -160,6 +151,7 @@ const CompleteAccount = () => {
                     placeholder="Adresa (strada, bloc, etaj, apartament)"
                   />
                   <input
+                    disabled={loading}
                     {...register("ShippingZipCode")}
                     type="text"
                     autoComplete="ShippingZipCode"
@@ -168,6 +160,7 @@ const CompleteAccount = () => {
                     placeholder="Cod Postal"
                   />
                   <input
+                    disabled={loading}
                     {...register("ShippingCity")}
                     type="text"
                     autoComplete="ShippingCity"
@@ -176,6 +169,7 @@ const CompleteAccount = () => {
                     placeholder="Oras"
                   />
                   <input
+                    disabled={loading}
                     {...register("ShippingState")}
                     type="text"
                     autoComplete="ShippingState"
@@ -189,6 +183,7 @@ const CompleteAccount = () => {
                 {!shippingAndBillingAreSame && (
                   <div className="col-span-1">
                     <input
+                      disabled={loading}
                       {...register("BillingStreet")}
                       type="text"
                       autoComplete="BillingStreet"
@@ -197,6 +192,7 @@ const CompleteAccount = () => {
                       placeholder="Adresa (strada, bloc, etaj, apartament)"
                     />
                     <input
+                      disabled={loading}
                       {...register("BillingZipCode")}
                       type="text"
                       autoComplete="BillingZipCode"
@@ -205,6 +201,7 @@ const CompleteAccount = () => {
                       placeholder="Cod Postal"
                     />
                     <input
+                      disabled={loading}
                       {...register("BillingCity")}
                       type="text"
                       autoComplete="BillingCity"
@@ -213,6 +210,7 @@ const CompleteAccount = () => {
                       placeholder="Oras"
                     />
                     <input
+                      disabled={loading}
                       {...register("BillingState")}
                       type="text"
                       autoComplete="BillingState"
@@ -226,6 +224,7 @@ const CompleteAccount = () => {
               </div>
               <div className="flex flex-row items-center justify-center w-full mb-4">
                 <input
+                  disabled={loading}
                   type="checkbox"
                   id="ShipBill"
                   defaultChecked={true}
@@ -241,7 +240,13 @@ const CompleteAccount = () => {
                 type="submit"
                 className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
               >
-                Finalizeaza
+                {success ? (
+                  <FaCheck />
+                ) : loading ? (
+                  <img src="hourglass.gif" className="h-[20px]" alt="" />
+                ) : (
+                  "Finalizeaza"
+                )}
               </button>
             </form>
           </div>

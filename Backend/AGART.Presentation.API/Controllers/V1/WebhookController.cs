@@ -57,7 +57,7 @@ public class WebhookController : ControllerBase
                 {
                     try
                     {
-                        var order = CreateOrder(item, userId, customer.Shipping, customer.Address);
+                        var order = CreateOrder(customer.Name, item, userId, customer.Shipping, customer.Address);
                         await _sender.Send(new AddToDoCommand(order));
                     }
                     catch (Exception ex)
@@ -99,8 +99,26 @@ public class WebhookController : ControllerBase
         }
     }
 
-    private Order CreateOrder(LineItem item, string userId, Shipping shipping, Address address)
+    private static Order CreateOrder(string customerName, LineItem item, string userId, Shipping shipping, Address address)
     {
-        return new Order();
+        return new Order
+        {
+            Name = item.Description,
+            Price = (int)item.Price.UnitAmount / 100,
+            Quantity = (int)item.Quantity,
+            ShippingCity = shipping.Address.City,
+            ShippingCountry = shipping.Address.Country,
+            ShippingAddress = shipping.Address.Line1,
+            ShippingPostalCode = shipping.Address.PostalCode,
+            ShippingState = shipping.Address.State,
+            BillingCity = address.City,
+            BillingCountry = address.Country,
+            BillingAddress = address.Line1,
+            BillingPostalCode = address.PostalCode,
+            BillingState = address.State,
+            ClientName = customerName,
+            Done = false,
+            UserId = userId
+        };
     }
 }

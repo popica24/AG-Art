@@ -40,6 +40,7 @@ export type UserData = {
     firstName:string;
     lastName:string;
     phoneNumber:string;
+    customer:string;
     shippingDetails: ShippingDetails;
     billingDetails: BillingDetails;
 }
@@ -59,4 +60,22 @@ type BillingDetails = {
     city:string;
     countryCode:string;
     state:string;
+}
+
+export type Order = {
+    id:number;
+    name: string;
+    price: number;
+    quantity: number;
+    shippingCity: string;
+    shippingCountry: string;
+    shippingAddress: string;
+    shippingPostalCode: string;
+    shippingState: string;
+    billingCity: string;
+    billingCountry: string;
+    billingAddress: string;
+    billingPostalCode: string;
+    billingState: string;
+    clientName: string;
 }

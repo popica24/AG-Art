@@ -80,7 +80,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {openAuth && <Authenticate />}
+      {openAuth && <Authenticate close={() => setOpenAuth(false)} />}
     </>
   );
 };

@@ -1,18 +1,29 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { FaCheck } from "react-icons/fa";
 type Inputs = {
   email: string;
   password: string;
 };
 type Props = {
   setRegister: () => void;
+  close: () => void;
 };
 const Login = (props: Props) => {
   const auth = getAuth();
-
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    signInWithEmailAndPassword(auth, data.email, data.password);
+    try {
+      setLoading(true);
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      setSuccess(true);
+    } catch (err: any) {
+      setLoading(false);
+      setSuccess(false);
+    }
   };
   return (
     <div
@@ -22,6 +33,7 @@ const Login = (props: Props) => {
       <div className="relative p-4 w-full max-w-md h-full md:h-auto">
         <div className="relative bg-white rounded-lg shadow">
           <button
+            onClick={props.close}
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center popup-close"
           >
@@ -44,13 +56,11 @@ const Login = (props: Props) => {
           <div className="p-5">
             <h3 className="text-2xl mb-0.5 font-medium"></h3>
             <p className="mb-4 text-sm font-normal text-gray-800"></p>
-
             <div className="text-center">
               <p className="mb-3 text-2xl font-semibold leading-5 text-slate-900">
                 Intra in cont
               </p>
-            </div>
-
+            </div>{" "}
             <div className="mt-7 flex flex-col gap-2">
               <button className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
                 <img
@@ -61,18 +71,17 @@ const Login = (props: Props) => {
                 Continua cu Google
               </button>
             </div>
-
             <div className="flex w-full items-center gap-2 py-6 text-sm text-slate-600">
               <div className="h-px w-full bg-slate-200"></div>
               SAU
               <div className="h-px w-full bg-slate-200"></div>
             </div>
-
             <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
               <label htmlFor="email" className="sr-only">
                 Email address
               </label>
               <input
+                disabled={loading}
                 type="email"
                 autoComplete="email"
                 required
@@ -84,6 +93,7 @@ const Login = (props: Props) => {
                 Password
               </label>
               <input
+                disabled={loading}
                 type="password"
                 autoComplete="current-password"
                 required
@@ -103,10 +113,15 @@ const Login = (props: Props) => {
                 type="submit"
                 className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
               >
-                Autentificare
+                {success ? (
+                  <FaCheck />
+                ) : loading ? (
+                  <img src="hourglass.gif" className="h-[20px]" alt="" />
+                ) : (
+                  "Autentificare"
+                )}
               </button>
             </form>
-
             <div className="mt-6 text-center text-sm text-slate-600">
               Nu ai cont ?{" "}
               <span
