@@ -18,5 +18,6 @@ public class Order : IEntity
     public string Phone { get; set; } = string.Empty;
     public string ClientName { get; set; } = string.Empty;
     public bool Done { get; set; }
+    public string UserId { get; set; }
     public DateTime? DoneAt { get; set; }
 }

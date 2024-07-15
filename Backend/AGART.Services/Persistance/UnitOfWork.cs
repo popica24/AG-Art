@@ -11,10 +11,11 @@ public class UnitOfWork : IUnitOfWork
     public ICarouselRepository Carousel { get; private set; }
     public IVariantRepository Variant { get; private set; }
     public ICategoryRepository Category { get; private set; }
+    public IOrderRepository Order { get; private set; }
+
     public AppDbContext _context { get; set; }
 
     public ICacheRepository _cache { get; set; }
-
 
 
     public UnitOfWork(AppDbContext context, ICacheRepository cache)
@@ -30,6 +31,7 @@ public class UnitOfWork : IUnitOfWork
         Carousel = new CarouselRepository(_context);
         Variant = new VariantRepository(_context);
         Category = new CategoryRepository(_context);
+        Order = new OrderRepository(_context);
     }
 
     protected virtual void Dispose(bool disposing)

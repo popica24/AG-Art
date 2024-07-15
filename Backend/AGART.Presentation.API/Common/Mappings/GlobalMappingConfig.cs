@@ -1,5 +1,6 @@
 using AGART.Application.ProductModule.Commands.Create;
 using AGART.Application.VariantModule.Commands.Create;
+using AGART.Domain.Order.Models;
 using AGART.Domain.Product.Models;
 using AGART.Presentation.API.Models.Product;
 using AGART.Presentation.API.Models.Variant;
@@ -46,5 +47,6 @@ public sealed class GlobalMappingConfig : IRegister
         TypeAdapterConfig<CreateVariantRequest, CreateVariantCommand>
         .NewConfig()
         .Map(dest => dest.Variant, src => src.Adapt<Variant>());
+
     }
 }

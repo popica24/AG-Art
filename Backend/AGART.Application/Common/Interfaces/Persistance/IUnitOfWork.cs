@@ -10,6 +10,8 @@ public interface IUnitOfWork : IDisposable
 
     public ICategoryRepository Category { get; }
 
+    public IOrderRepository Order { get; }
+
     public Task SaveChangesAsync(CancellationToken cancellationToken);
 
 }

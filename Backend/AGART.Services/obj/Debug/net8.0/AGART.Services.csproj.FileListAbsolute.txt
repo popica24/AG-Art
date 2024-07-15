@@ -11,10 +11,10 @@
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.AssemblyInfoInputs.cache
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.AssemblyInfo.cs
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.csproj.CoreCompileInputs.cache
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.sourcelink.json
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.csproj.CopyComplete
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/refint/AGART.Services.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.pdb
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.genruntimeconfig.cache
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/ref/AGART.Services.dll
-/home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/Debug/net8.0/AGART.Services.sourcelink.json

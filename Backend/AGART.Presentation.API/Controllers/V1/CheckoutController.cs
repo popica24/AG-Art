@@ -14,17 +14,10 @@ namespace AGART.Presentation.API.Controllers.V1
     {
         [HttpPost]
         [EnableCors("User")]
-        public async Task<IActionResult> Index([FromBody] CheckoutItem[] items)
+        public async Task<IActionResult> Index([FromBody] CheckoutItem[] items, [FromQuery] string customer, [FromQuery] string userId)
         {
 
             var lineItems = new List<SessionLineItemOptions>();
-
-            var productService = new ProductService();
-
-            var productGetOptions = new ProductGetOptions
-            {
-                Expand = ["default_price"]
-            };
 
             foreach (var item in items)
             {
@@ -41,29 +34,22 @@ namespace AGART.Presentation.API.Controllers.V1
                         UnitAmountDecimal = item.price * 100,
                     },
                     Quantity = item.quantity,
-
                 });
             }
 
             var options = new SessionCreateOptions
             {
+                Customer = customer,
                 LineItems = lineItems,
                 PaymentMethodTypes = ["card"],
                 Mode = "payment",
                 SuccessUrl = "http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}",
-                PhoneNumberCollection = new SessionPhoneNumberCollectionOptions
-                {
-                    Enabled = true,
-                },
-                ShippingAddressCollection = new SessionShippingAddressCollectionOptions
-                {
-                    AllowedCountries =
-                [
-                    "RO"
-                ],
-                },
+
+                Metadata = new Dictionary<string, string>
+            {
+                { "UserId", userId }
+            },
                 AllowPromotionCodes = true,
-                CustomerCreation = "always"
             };
 
             var service = new SessionService();

@@ -8,9 +8,9 @@
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.AssemblyInfoInputs.cache
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.AssemblyInfo.cs
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.csproj.CoreCompileInputs.cache
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.sourcelink.json
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.csproj.CopyComplete
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/refint/AGART.Application.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.pdb
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/ref/AGART.Application.dll
-/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/Debug/net8.0/AGART.Application.sourcelink.json

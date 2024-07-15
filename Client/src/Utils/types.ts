@@ -34,3 +34,29 @@ export type ProductCardProps = {
     colorCodes:string[],
     percentOff:number
 }
+
+export type UserData = {
+    email:string;
+    firstName:string;
+    lastName:string;
+    phoneNumber:string;
+    shippingDetails: ShippingDetails;
+    billingDetails: BillingDetails;
+}
+
+type ShippingDetails = {
+    phone:string;
+    street:string;
+    zipCode:string;
+    city:string;
+    countryCode:string;
+    state:string;
+}
+
+type BillingDetails = {
+    street:string;
+    zipCode:string;
+    city:string;
+    countryCode:string;
+    state:string;
+}

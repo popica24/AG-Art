@@ -6,8 +6,8 @@
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.AssemblyInfoInputs.cache
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.AssemblyInfo.cs
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.csproj.CoreCompileInputs.cache
+/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.sourcelink.json
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/refint/AGART.Domain.dll
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.pdb
 /home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/ref/AGART.Domain.dll
-/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.sourcelink.json

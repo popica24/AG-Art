@@ -9,23 +9,26 @@ import { ProductProvider } from "./Contexts/ProductContext";
 import { LatestProvider } from "./Contexts/LatestContext";
 import { RecommandedProvider } from "./Contexts/RecommandedContext";
 import { SearchProvider } from "./Contexts/SearchContext";
+import { AuthProvider } from "./Contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ProductProvider>
-        <LatestProvider>
-          <RecommandedProvider>
-            <SearchProvider>
-              <ShoppingCartProvider>
-                <RouterProvider router={router} />
-              </ShoppingCartProvider>
-            </SearchProvider>
-          </RecommandedProvider>
-        </LatestProvider>
-      </ProductProvider>
+      <AuthProvider>
+        <ProductProvider>
+          <LatestProvider>
+            <RecommandedProvider>
+              <SearchProvider>
+                <ShoppingCartProvider>
+                  <RouterProvider router={router} />
+                </ShoppingCartProvider>
+              </SearchProvider>
+            </RecommandedProvider>
+          </LatestProvider>
+        </ProductProvider>
+      </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
