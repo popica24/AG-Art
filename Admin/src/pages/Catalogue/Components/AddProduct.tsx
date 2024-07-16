@@ -48,6 +48,7 @@ const AddProduct = (props: Props) => {
       const lampModel: PostProduct = {
         name: data.name,
         categoryId: CategoryToInt(category),
+
         material: data.material,
         height: Number(data.height),
         width: Number(data.width),
@@ -55,7 +56,7 @@ const AddProduct = (props: Props) => {
         weight: Number(data.weight),
         lightSource: data.lightSource,
         price: data.price,
-        description: data.description,
+        description: "",
         keywords: keywords,
       };
       const result = await products?.create(lampModel);

@@ -14,9 +14,9 @@ const ProductShowcase = () => {
 
     if (result?.data) setItems(result?.data);
   };
-  if (!items || items.length == 0) return <></>; 
+  if (!items || items.length == 0) return <></>;
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto py-8">
       <div className="flex justify-start">
         <span className="text-xl md:text-3xl md:text-start text-center w-full font-thin uppercase py-5">
           Produse noi

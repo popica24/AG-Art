@@ -7,10 +7,12 @@ type Props = {
 };
 const NavLinks = (props: Props) => {
   const closeSearch = () => {
+    console.log("close");
+
     props.setSearchOpen(false);
   };
   return (
-    <nav className="hidden md:block text-xs md:text-md lg:text-base ">
+    <nav className="hidden lg:block text-xs md:text-md lg:text-base ">
       <div className="nav-container text-center ">
         <section className="text-base relative">
           {props.searchOpen && <Search closeSearch={closeSearch} />}
@@ -46,7 +48,7 @@ const NavLinks = (props: Props) => {
         </section>
         <section className="text-center">
           <a id="oneA" href="#one">
-            Inapoi
+            ←
           </a>
           <a href="#oneA">Pendule</a>
           <a href="#">Lampadare de podea </a>
@@ -56,13 +58,13 @@ const NavLinks = (props: Props) => {
         </section>
         <section className="text-center">
           <a id="two" href="#top2">
-            Inapoi
+            ←
           </a>
           <Link to="/becuri">Becuri</Link>
         </section>
         <section className="text-center">
           <a id="three" href="#top3">
-            Inapoi
+            ←
           </a>
           <Link to="/tablouri-din-lemn">Tablouri din lemn</Link>
           <Link to="/articole-sezoniere">Articole sezoniere</Link>

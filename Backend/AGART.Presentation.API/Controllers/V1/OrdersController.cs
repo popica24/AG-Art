@@ -5,8 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Stripe;
-using Stripe.Climate;
+
 
 namespace AGART.Presentation.API.Controllers.V1;
 

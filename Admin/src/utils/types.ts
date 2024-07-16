@@ -1,18 +1,25 @@
 export type ToDoLamp = {
-    id: number;
-    name: string;
-    price: number;
-    quantity: number;
-    city: string;
-    addressLine1: string;
-    addressLine2: string;
-    postalCode: string;
-    state: string;
-    phone: string;
-    clientName: string;
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  shippingCity: string;
+  shippingCountry: string;
+  shippingAddress: string;
+  shippingPostalCode: string;
+  shippingState: string;
+  billingCity: string;
+  billingCountry: string;
+  billingAddress: string;
+  billingPostalCode: string;
+  billingState: string;
+  clientName: string;
+  done: boolean;
+  userId: string;
+  doneAt: Date | null;
   }
 
-  export interface Product  {
+  export type Product = {
     id?:number,
     name:string,
     material:string,

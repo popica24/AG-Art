@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <>
       <div className="bg-black text-[#F7EDE3] py-8 fixed left-0 right-0 top-0 z-50">
-        <div className="flex flex-row items-center md:justify-evenly justify-between max-w-[90vmin] md:container mx-auto ">
+        <div className="flex flex-row items-center lg:justify-evenly justify-center max-w-[90vmin] md:container mx-auto ">
           <Link to={"/"}>
             <img
               src="/LOGO.jpg"
@@ -33,22 +33,10 @@ const Navbar = () => {
 
           <div className="flex flex-row-reverse items-center">
             {" "}
-            <MobileMenu />
-            <button onClick={openCart} className="relative md:hidden">
-              <img
-                className="mx-3"
-                src="/shopping.svg"
-                alt="Shopping Cart"
-                width={25}
-                height={25}
-              />
-              <span className="absolute top-1/2 right-1/2 xl:translate-x-1/2 translate-x-[50%] -translate-y-1/3 text-xs">
-                {cartQuantity}
-              </span>
-            </button>
+            <MobileMenu openAuth={() => setOpenAuth(true)} />
           </div>
 
-          <div className="md:flex flex-row items-center hidden lg:mb-4">
+          <div className="lg:flex flex-row items-center hidden">
             <button onClick={openSearch}>
               <img src="/search.svg" alt="Search" width={20} height={20} />
             </button>

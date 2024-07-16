@@ -16,7 +16,7 @@ const Homepage = () => {
         </span>
       </div>
       <div className="md:h-[80vh]">
-        <div className="z-40 relative">
+        <div className="z-30 relative">
           <Banners />
         </div>
         <div

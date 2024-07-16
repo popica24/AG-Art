@@ -21,7 +21,11 @@ type Inputs = {
   BillingState?: string;
 };
 
-const CompleteAccount = () => {
+type Props = {
+  close: () => void;
+};
+
+const CompleteAccount = (props: Props) => {
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -57,6 +61,8 @@ const CompleteAccount = () => {
           Authorization: `Bearer ${idToken}`,
         },
       });
+      setSuccess(true);
+      setTimeout(() => props.close(), 1000);
     } catch (err: any) {
       setLoading(false);
       setSuccess(false);

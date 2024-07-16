@@ -1,57 +1,72 @@
-import { CiSearch } from "react-icons/ci";
+import { BiSearch, BiSolidFoodMenu } from "react-icons/bi";
+import { useAuth } from "../../../Contexts/AuthContext";
 import { Link } from "react-router-dom";
+import { VscAccount } from "react-icons/vsc";
+import { IoIosLogIn } from "react-icons/io";
+import { FiHome, FiSearch } from "react-icons/fi";
+import { useState } from "react";
 import MobileSearch from "./MobileSearch";
-
-const MobileMenu = () => {
+import { AiOutlineShopping } from "react-icons/ai";
+import { GoHome } from "react-icons/go";
+import MobileDrawer from "./MobileDrawer";
+type Props = {
+  openAuth: () => void;
+};
+const MobileMenu = (props: Props) => {
+  const { currentUser } = useAuth();
+  const [openSearch, setOpenSearch] = useState(false);
+  const [openCatalogue, setOpenCatalogue] = useState(false);
+  const closeSearch = () => setOpenSearch(false);
+  const closeCatalogue = () => setOpenCatalogue(false);
   return (
-    <label
-      className="relative z-[9999] cursor-pointer px-3 py-6 md:hidden block"
-      htmlFor="mobile-menu"
-    >
-      <input className="peer hidden" type="checkbox" id="mobile-menu" />
-      <div className="relative z-[9999] block h-[1px] w-7 bg-white bg-transparent content-[''] before:absolute before:top-[-0.35rem] before:z-[9999] before:block before:h-full before:w-full before:bg-[#F7EDE3] before:transition-all before:duration-200 before:ease-out before:content-[''] after:absolute after:right-0 after:bottom-[-0.35rem] after:block after:h-full after:w-full after:bg-[#F7EDE3] after:transition-all after:duration-200 after:ease-out after:content-[''] peer-checked:bg-transparent before:peer-checked:top-0 before:peer-checked:w-full before:peer-checked:rotate-45 before:peer-checked:transform after:peer-checked:bottom-0 after:peer-checked:w-full after:peer-checked:-rotate-45 after:peer-checked:transform"></div>
-      <div className="fixed inset-0 z-[9999] hidden h-full w-full bg-[#F7EDE3]/50 backdrop-blur-sm peer-checked:block">
-        &nbsp;
-      </div>
-      <div className="fixed top-0 right-0 z-[9999] h-full w-full translate-x-full overflow-y-auto overscroll-y-none transition duration-500 peer-checked:translate-x-0">
-        <div className="float-right min-h-full w-[85%] bg-black px-6 pt-12 shadow-2xl font-thin flex flex-col">
-          <MobileSearch />
-          <span className="text-xl">Corpuri de iluminat</span>
-          <ul className="ms-6 my-3 underline underline-offset-4 leading-7">
-            <li>
-              <Link to={"/pendule"}>Pendule</Link>
-            </li>
-            <li>
-              <Link to={"/lampadare-de-podea"}>Lampadare de podea</Link>
-            </li>
-            <li>
-              <Link to={"/lampi-de-masa"}>Lampi de masa</Link>
-            </li>
-            <li>
-              <Link to={"/abajururi-din-lemn"}>Abajururi din lemn</Link>
-            </li>
-            <li>
-              <Link to={"/aplice-de-perete"}>Pendule</Link>
-            </li>
-          </ul>
-          <span className="text-xl">Accesorii</span>
-          <ul className="ms-6 my-3 underline underline-offset-4 leading-7">
-            <li>
-              <Link to={"/becuri"}>Becuri</Link>
-            </li>
-          </ul>
-          <span className="text-xl">Decoratiuni interioare</span>
-          <ul className="ms-6 my-3 underline underline-offset-4 leading-7">
-            <li>
-              <Link to={"/tablouri-din-lemn"}>Tablouri din lemn</Link>
-            </li>
-            <li>
-              <Link to={"/articole-sezoniere"}>Articole sezoniere</Link>
-            </li>
-          </ul>
+    <>
+      {openCatalogue && (
+        <MobileDrawer isOpen={openCatalogue} closeCatalogue={closeCatalogue} />
+      )}
+      {openSearch && <MobileSearch closeSearch={closeSearch} />}
+      <div className="z-40 fixed bottom-0 left-0 w-full p-4 bg-black/50 text-[#F7F0E0] text-sm block lg:hidden">
+        <div className="flex flex-row items-center justify-evenly max-w-lg mx-auto">
+          <Link to={"/"} className="flex flex-col items-center">
+            <GoHome size={20} />
+            <span>Acasa</span>
+          </Link>
+          <div
+            className="flex flex-col items-center"
+            onClick={() => setOpenSearch(true)}
+          >
+            <FiSearch size={20} />
+            <span>Cauta</span>
+          </div>
+          <div
+            className="flex flex-col items-center"
+            onClick={() => setOpenCatalogue(true)}
+          >
+            <BiSolidFoodMenu size={20} />
+            <span>Catalog</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <AiOutlineShopping size={22} />
+            <span>Cos</span>
+          </div>
+          <div>
+            {currentUser ? (
+              <Link to={"/account"} className="flex flex-col items-center">
+                <VscAccount size={"22px"} />
+                <span>Cont</span>
+              </Link>
+            ) : (
+              <div
+                onClick={props.openAuth}
+                className="flex flex-col items-center"
+              >
+                <IoIosLogIn size={"22px"} />
+                <span>Login</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </label>
+    </>
   );
 };
 

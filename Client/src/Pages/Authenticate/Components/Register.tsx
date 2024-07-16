@@ -20,7 +20,7 @@ const Register = (props: Props) => {
     );
   }
   if (panel == 2) {
-    return <CompleteAccount />;
+    return <CompleteAccount close={props.close} />;
   }
 };
 
