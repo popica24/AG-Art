@@ -9,6 +9,7 @@ type Props = {
   description: string;
   field: string;
   value: string;
+  categoryId: number;
 };
 
 const DescriptionRow = (props: Props) => {
@@ -24,6 +25,7 @@ const DescriptionRow = (props: Props) => {
   const handleSubmit = async () => {
     const newLamp: Partial<Product> = {
       description: value,
+      categoryId: props.categoryId,
     };
     await products?.update(props.id, newLamp);
   };

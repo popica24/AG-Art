@@ -7,6 +7,7 @@ import { Product } from "../../../../../utils/types";
 type Props = {
   id: number;
   keywords: string[];
+  categoryId: number;
   handleClose: () => void;
 };
 
@@ -19,6 +20,7 @@ const AddKeyword = (props: Props) => {
       try {
         const newLamp: Partial<Product> = {
           keywords: [...props.keywords, keyword.trim()],
+          categoryId: props.categoryId,
         };
         await products?.update(props.id, newLamp);
         setKeyword("");

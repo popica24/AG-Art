@@ -35,22 +35,29 @@ public class GenericRepository<TEntity>(AppDbContext context) : IGenericReposito
 
     public async Task<TEntity> UpdateAsync(int id, TEntity entity)
     {
-        var existingEntity = await context.Set<TEntity>().FindAsync(id);
-
-        var entityType = typeof(TEntity);
-        var properties = typeof(TEntity).GetProperties()
-            .Where(p => p.GetCustomAttribute<KeyAttribute>() == null);
-
-        foreach (var property in properties.Where(prop => prop.Name != "Price"))
+        try
         {
-            var newValue = property.GetValue(entity);
-            if (newValue != null)
+            var existingEntity = await context.Set<TEntity>().FindAsync(id);
+
+            var entityType = typeof(TEntity);
+            var properties = typeof(TEntity).GetProperties()
+                .Where(p => p.GetCustomAttribute<KeyAttribute>() == null);
+
+            foreach (var property in properties.Where(prop => prop.Name != "Price"))
             {
-                property.SetValue(existingEntity, newValue);
+                var newValue = property.GetValue(entity);
+                if (newValue != null)
+                {
+                    property.SetValue(existingEntity, newValue);
+                }
             }
+
+
+            return existingEntity;
         }
-
-
-        return existingEntity;
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 }

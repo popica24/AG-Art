@@ -5,6 +5,7 @@ import AddKeyword from "./AddKeyword";
 type Props = {
   id: number;
   keywords: string[];
+  categoryId: number;
 };
 
 const KeywordHeader = (props: Props) => {
@@ -27,6 +28,7 @@ const KeywordHeader = (props: Props) => {
       </span>
       {edit && (
         <AddKeyword
+          categoryId={props.categoryId}
           id={props.id}
           keywords={props.keywords}
           handleClose={() => setEdit(false)}

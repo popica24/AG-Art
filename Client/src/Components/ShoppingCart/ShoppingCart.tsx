@@ -2,53 +2,14 @@ import { Button, Drawer, Typography } from "@material-tailwind/react";
 import { useCart } from "../../Contexts/ShoppingCartContext";
 import CartItem from "./Components/CartItem";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
-import { FormEvent, useState } from "react";
-import { useAuth } from "../../Contexts/AuthContext";
-import axios from "axios";
-const API_URL = import.meta.env.VITE_API_URL;
+import { Link } from "react-router-dom";
+
 type ShoppingCartProps = {
   isOpen: boolean;
 };
 
 const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
-  const { currentUser } = useAuth();
-  const [loading, setLoading] = useState(false);
   const { cartItems, closeCart } = useCart();
-  const handleCheckout = async (e: FormEvent<HTMLFormElement>) => {
-    setLoading(true);
-    e.preventDefault();
-    fetchUser();
-  };
-
-  const fetchUser = () => {
-    currentUser?.getIdToken().then((token) => {
-      axios
-        .get(import.meta.env.VITE_API_URL + "/user", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then(async (response) => { 
-          const data = JSON.stringify(cartItems);
-          const sessionResponse = await fetch(
-            `${API_URL}/checkout?customer=${response.data.customer}&userId=${currentUser.uid}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: data,
-            }
-          );
-
-          const session = await sessionResponse.json();
-          if (session.url) {
-            window.location.href = session.url;
-          }
-        });
-    });
-  };
-
   return (
     <div className="z-50">
       <Drawer
@@ -56,7 +17,7 @@ const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
         open={isOpen}
         onClose={closeCart}
         className="p-4"
-        size={330}
+        size={440}
         placement="right"
         placeholder={undefined}
         onPointerEnterCapture={undefined}
@@ -81,18 +42,13 @@ const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
             </div>
           )}
           <div className="absolute  bottom-0 left-0 right-0 flex flex-col items-center w-full py-6 bg-black bg-opacity-60 backdrop-blur-sm">
-            <form onSubmit={(e) => handleCheckout(e)}>
-              <Button
-                disabled={loading}
-                type="submit"
-                size="lg"
-                placeholder={undefined}
-                onPointerEnterCapture={undefined}
-                onPointerLeaveCapture={undefined}
-              >
-                {loading ? <>Loading</> : <>Checkout</>}
-              </Button>
-            </form>
+            <a
+              href="/checkout"
+              className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm py-3.5 px-7 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none gap-3"
+            >
+              Checkout
+            </a>
+
             <Typography
               variant="small"
               color="white"

@@ -1,3 +1,4 @@
+using AGART.Application.Common.Utilities;
 using AGART.Application.OrderModule.Commands.AddToDo;
 using Asp.Versioning;
 using MapsterMapper;
@@ -118,7 +119,8 @@ public class WebhookController : ControllerBase
             BillingState = address.State,
             ClientName = customerName,
             Done = false,
-            UserId = userId
+            UserId = userId,
+            PaymentMethod = GlobalConstants.PaymentMethod.Card
         };
     }
 }

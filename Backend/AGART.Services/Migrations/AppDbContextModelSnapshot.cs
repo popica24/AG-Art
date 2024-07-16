@@ -96,6 +96,10 @@ namespace AGART.Services.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 

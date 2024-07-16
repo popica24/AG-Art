@@ -10,10 +10,8 @@ import DescriptionRow from "./DescriptionRow";
 import CategoryRow from "./CategoryRow";
 import { IntToCategory } from "../../../../utils/IntToCategory";
 import VisibleButton from "./VisibleButton";
-import { useState } from "react";
 
 const CatalogueCard = (product: Product) => {
-  const [shallowProduct, setShallowProduct] = useState(product);
   if (!product.id || !product.price) {
     return <></>;
   }
@@ -23,13 +21,9 @@ const CatalogueCard = (product: Product) => {
         <div className="inline-flex items-center w-full justify-between">
           <span className="w-full text-2xl">{product.name}</span>
           <VisibleButton
-            visible={shallowProduct.visible}
-            toggle={() =>
-              setShallowProduct({
-                ...shallowProduct,
-                visible: !shallowProduct.visible,
-              })
-            }
+            visible={product.visible}
+            id={product.id}
+            categoryId={product.categoryId}
           />
         </div>
 
@@ -45,6 +39,8 @@ const CatalogueCard = (product: Product) => {
               field="Material"
               propName={propertyOf<Product>("material")}
               name={product.material}
+              id={product.id}
+              categoryId={product.categoryId}
             />
             <EditableRow
               id={product.id}
@@ -61,6 +57,7 @@ const CatalogueCard = (product: Product) => {
               categoryId={product.categoryId}
             />
             <DescriptionRow
+              categoryId={product.categoryId}
               id={product.id}
               field="Descriere"
               description={product.description.slice(0, 23) + "..."}
@@ -106,7 +103,11 @@ const CatalogueCard = (product: Product) => {
             ))}
           </ul>
         </span>
-        <KeywordHeader id={product.id} keywords={product.keywords} />
+        <KeywordHeader
+          categoryId={product.categoryId}
+          id={product.id}
+          keywords={product.keywords}
+        />
         <span className="my-2 w-full border-t-[.2px] border-[#9e9e9e69] px-6 py-2">
           <ul className="list-disc">
             {product.keywords.map((keyword) => (

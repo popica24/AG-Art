@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Stripe;
 using Stripe.Checkout;
 using Asp.Versioning;
-using AGART.Presentation.API.Models.Checkout;
 using Microsoft.AspNetCore.Cors;
+using AGART.Presentation.API.Models.Order;
 
 namespace AGART.Presentation.API.Controllers.V1
 {
@@ -14,7 +13,7 @@ namespace AGART.Presentation.API.Controllers.V1
     {
         [HttpPost]
         [EnableCors("User")]
-        public async Task<IActionResult> Index([FromBody] CheckoutItem[] items, [FromQuery] string customer, [FromQuery] string userId)
+        public async Task<IActionResult> Index([FromQuery] string customer, [FromQuery] string userId, [FromBody] CreateOrderRequest[] items)
         {
 
             var lineItems = new List<SessionLineItemOptions>();

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AGART.Services")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa083063f650646ab307fb32431729eb096dd50a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e5968cc7f62824611aca04e82617433c5c9b53a")]
 [assembly: System.Reflection.AssemblyProductAttribute("AGART.Services")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AGART.Services")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

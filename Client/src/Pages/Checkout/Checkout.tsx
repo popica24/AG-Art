@@ -3,10 +3,12 @@ import { useAuth } from "../../Contexts/AuthContext";
 import { UserData } from "../../Utils/types";
 import axios from "axios";
 import RadioButton from "../../Components/RadioButton/RadioButton";
+import { useCart } from "../../Contexts/ShoppingCartContext";
 
 const Checkout = () => {
   const { currentUser } = useAuth();
   const [userData, setUserData] = useState<UserData | null>(null);
+  const { cartItems } = useCart();
 
   const getUser = async () => {
     const token = await currentUser?.getIdToken();
@@ -24,6 +26,33 @@ const Checkout = () => {
   useEffect(() => {
     getUser();
   }, []);
+
+  const handleSubmit = async () => {
+    if (!userData || !currentUser) {
+      return;
+    }
+
+    const payWithCardUrl = `${import.meta.env.VITE_API_URL}/checkout?customer=${
+      userData?.customer
+    }&userId=${currentUser.uid}`;
+    const payWithCashUrl = import.meta.env.VITE_API_URL + "/orders";
+    const token = await currentUser?.getIdToken();
+    const data = JSON.stringify(cartItems);
+    var url = await axios.post(payWithCashUrl, data, {
+      params: {
+        customer: userData?.customer,
+        userId: currentUser.uid,
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (url.data.url) {
+      window.location.href = url.data.url;
+    }
+  };
   return (
     <div className="text-white bg-black mt-[115.71px] md:mt-[110px] z-10">
       <div className="flex justify-start container mx-auto px-8">
@@ -91,6 +120,7 @@ const Checkout = () => {
             </div>
           </div>
         </div>
+        <button onClick={handleSubmit}>Checkout</button>
       </div>
     </div>
   );
