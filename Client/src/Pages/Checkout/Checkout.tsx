@@ -6,6 +6,7 @@ import RadioButton from "../../Components/RadioButton/RadioButton";
 import { useCart } from "../../Contexts/ShoppingCartContext";
 
 const Checkout = () => {
+  const [paymentType, setPaymentType] = useState("Card");
   const { currentUser } = useAuth();
   const [userData, setUserData] = useState<UserData | null>(null);
   const { cartItems } = useCart();
@@ -31,17 +32,14 @@ const Checkout = () => {
     if (!userData || !currentUser) {
       return;
     }
-
-    const payWithCardUrl = `${import.meta.env.VITE_API_URL}/checkout?customer=${
-      userData?.customer
-    }&userId=${currentUser.uid}`;
-    const payWithCashUrl = import.meta.env.VITE_API_URL + "/orders";
+    const orderUrl = import.meta.env.VITE_API_URL + "/orders";
     const token = await currentUser?.getIdToken();
     const data = JSON.stringify(cartItems);
-    var url = await axios.post(payWithCashUrl, data, {
+    var url = await axios.post(orderUrl, data, {
       params: {
         customer: userData?.customer,
         userId: currentUser.uid,
+        paymentType: paymentType,
       },
       headers: {
         Authorization: `Bearer ${token}`,
@@ -49,8 +47,8 @@ const Checkout = () => {
       },
     });
 
-    if (url.data.url) {
-      window.location.href = url.data.url;
+    if (paymentType == "Card" && url.data) {
+      window.location.href = url.data;
     }
   };
   return (
