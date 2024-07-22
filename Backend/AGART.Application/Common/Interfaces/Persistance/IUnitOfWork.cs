@@ -12,6 +12,8 @@ public interface IUnitOfWork : IDisposable
 
     public IOrderRepository Order { get; }
 
+    public IOrderProduct OrderProduct { get; }
+
     public Task SaveChangesAsync(CancellationToken cancellationToken);
 
 }

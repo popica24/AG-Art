@@ -6,7 +6,7 @@ import RadioButton from "../../Components/RadioButton/RadioButton";
 import { useCart } from "../../Contexts/ShoppingCartContext";
 
 const Checkout = () => {
-  const [paymentType, setPaymentType] = useState("Card");
+  const [paymentType, setPaymentType] = useState("Cash");
   const { currentUser } = useAuth();
   const [userData, setUserData] = useState<UserData | null>(null);
   const { cartItems } = useCart();
@@ -104,12 +104,14 @@ const Checkout = () => {
             <div className="bg-white text-black p-2 flex flex-col justify-start mt-4">
               <span className="font-semibold text-lg mb-2">Plată</span>
               <RadioButton
+                onChange={() => setPaymentType("Card")}
                 name="payment_methiods"
                 id="card_payment"
                 label="Cu cardul"
                 defaultChecked={false}
               />
               <RadioButton
+                onChange={() => setPaymentType("Cash")}
                 id="cash_payment"
                 label="Cu cash"
                 defaultChecked

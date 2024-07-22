@@ -90,21 +90,16 @@ namespace AGART.Services.Migrations
                     b.Property<bool>("Done")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("DoneAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
+                    b.Property<DateTime?>("PlacedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ShippingAddress")
                         .IsRequired()
@@ -126,13 +121,46 @@ namespace AGART.Services.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("UserId")
+                    b.Property<int>("Total")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("AGART.Domain.OrderProduct.Models.OrderProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClientId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Variant")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order");
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderProduct");
                 });
 
             modelBuilder.Entity("AGART.Domain.Product.Models.Product", b =>
@@ -216,6 +244,25 @@ namespace AGART.Services.Migrations
                     b.ToTable("Variant");
                 });
 
+            modelBuilder.Entity("AGART.Domain.OrderProduct.Models.OrderProduct", b =>
+                {
+                    b.HasOne("AGART.Domain.Order.Models.Order", "Order")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AGART.Domain.Product.Models.Product", "Product")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("AGART.Domain.Product.Models.Product", b =>
                 {
                     b.HasOne("AGART.Domain.Category.Models.Category", "Category")
@@ -243,8 +290,15 @@ namespace AGART.Services.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("AGART.Domain.Order.Models.Order", b =>
+                {
+                    b.Navigation("OrderProducts");
+                });
+
             modelBuilder.Entity("AGART.Domain.Product.Models.Product", b =>
                 {
+                    b.Navigation("OrderProducts");
+
                     b.Navigation("Variants");
                 });
 #pragma warning restore 612, 618

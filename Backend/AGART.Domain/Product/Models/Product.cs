@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using AGART.Domain.Common.Models;
 
 namespace AGART.Domain.Product.Models;
@@ -23,4 +24,6 @@ public class Product : IEntity
 
     public ICollection<Variant> Variants { get; set; }
     public Category.Models.Category Category { get; set; }
+    [JsonIgnore]
+    public List<OrderProduct.Models.OrderProduct> OrderProducts { get; set; }
 }

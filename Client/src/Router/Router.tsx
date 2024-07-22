@@ -6,14 +6,9 @@ import Product from "../Pages/Product/Product";
 import Results from "../Pages/Results/Results";
 import Success from "../Pages/Success/Success";
 import Checkout from "../Pages/Checkout/Checkout";
-import Authenticate from "../Pages/Authenticate/Authenticate";
 import Account from "../Pages/Account/Account";
 
 const router = createBrowserRouter([
-  {
-    path: "/authenticate",
-    element: <Authenticate />,
-  },
   {
     path: "/",
     element: <Layout />,

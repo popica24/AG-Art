@@ -1,7 +1,9 @@
 using AGART.Application.Common.Utilities;
 using AGART.Application.OrderModule.Commands.AddToDo;
 using AGART.Application.OrderModule.Queries.GetOrdersForUser;
+using AGART.Application.OrderProductModule.Commands;
 using AGART.Domain.Order.Models;
+using AGART.Domain.OrderProduct.Models;
 using AGART.Presentation.API.Models.Order;
 using Asp.Versioning;
 using FirebaseAdmin.Auth;
@@ -70,13 +72,14 @@ public class OrdersController(ISender sender) : ControllerBase
 
     }
 
-    private static Order CreateOrder(CreateOrderRequest order, Customer user, string userId)
+    private static Order CreateOrder(Customer user, string userId, int total)
     {
+        var id = new Random().Next(1000000, 9999999);
         return new Order
         {
-            Name = order.name,
-            Price = order.price,
-            Quantity = order.quantity,
+            Id = id,
+            Total = total,
+            ClientName = user.Name,
             ShippingCity = user.Shipping.Address.City,
             ShippingCountry = user.Shipping.Address.Country,
             ShippingAddress = user.Shipping.Address.Line1,
@@ -87,10 +90,9 @@ public class OrdersController(ISender sender) : ControllerBase
             BillingAddress = !string.IsNullOrEmpty(user.Address.Line1) ? user.Address.Line1 : user.Shipping.Address.Line1,
             BillingPostalCode = !string.IsNullOrEmpty(user.Address.PostalCode) ? user.Address.PostalCode : user.Shipping.Address.PostalCode,
             BillingState = !string.IsNullOrEmpty(user.Address.State) ? user.Address.State : user.Shipping.Address.State,
-            ClientName = user.Name,
             Done = false,
+            PlacedAt = DateTime.UtcNow,
             PaymentMethod = GlobalConstants.PaymentMethod.Cash,
-            UserId = userId
         };
     }
 
@@ -109,11 +111,25 @@ public class OrdersController(ISender sender) : ControllerBase
 
     private async Task HandleCashPayment(CreateOrderRequest[] items, Customer user, string userId)
     {
-        foreach (var order in items)
+        int total = Enumerable.Sum(items.Select(item => item.price * item.quantity));
+
+        var orderBody = CreateOrder(user, userId, total);
+        var orderRequest = new AddToDoCommand(orderBody);
+
+        await sender.Send(orderRequest);
+
+        foreach (var item in items)
         {
-            var orderBody = CreateOrder(order, user, userId);
-            var orderRequest = new AddToDoCommand(orderBody);
-            await sender.Send(orderRequest);
+            var orderProduct = new OrderProduct
+            {
+                ProductId = item.id,
+                ClientId = userId,
+                OrderId = orderBody.Id,
+                Quantity = item.quantity,
+                Variant = item.variant
+            };
+            var orderProductRequest = new AddOrderProductCommand(orderProduct);
+            await sender.Send(orderProductRequest);
         }
     }
 

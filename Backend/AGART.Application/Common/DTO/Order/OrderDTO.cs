@@ -1,19 +1,47 @@
+using AGART.Application.Common.DTO.Product;
+using AGART.Domain.OrderProduct.Models;
+
 namespace AGART.Application.Common.DTO.Order;
-public class OrderDTO(Domain.Order.Models.Order order)
+public class OrderDTO
 {
-    public int Id { get; set; } = order.Id;
-    public string? Name { get; set; } = order.Name;
-    public int Price { get; set; } = order.Price;
-    public int Quantity { get; set; } = order.Quantity;
-    public string ShippingCity { get; set; } = order.ShippingCity;
-    public string ShippingCountry { get; set; } = order.ShippingCountry;
-    public string ShippingAddress { get; set; } = order.ShippingAddress;
-    public string ShippingPostalCode { get; set; } = order.ShippingPostalCode;
-    public string ShippingState { get; set; } = order.ShippingState;
-    public string BillingCity { get; set; } = order.BillingCity;
-    public string BillingCountry { get; set; } = order.BillingCountry;
-    public string BillingAddress { get; set; } = order.BillingAddress;
-    public string BillingPostalCode { get; set; } = order.BillingPostalCode;
-    public string BillingState { get; set; } = order.BillingState;
-    public string ClientName { get; set; } = order.ClientName;
+    public int Id { get; set; }
+    public int Total { get; set; }
+    public string ClientName { get; set; }
+    public string ShippingCity { get; set; } = string.Empty;
+    public string ShippingCountry { get; set; } = string.Empty;
+    public string ShippingAddress { get; set; } = string.Empty;
+    public string ShippingPostalCode { get; set; } = string.Empty;
+    public string ShippingState { get; set; } = string.Empty;
+    public string BillingCity { get; set; } = string.Empty;
+    public string BillingCountry { get; set; } = string.Empty;
+    public string BillingAddress { get; set; } = string.Empty;
+    public string BillingPostalCode { get; set; } = string.Empty;
+    public string BillingState { get; set; } = string.Empty;
+    public string PaymentMethod { get; set; }
+    public string PlacedAt { get; set; }
+    public List<ProductOrderDTO> Products { get; set; }
+
+    public OrderDTO()
+    {
+
+    }
+    // public OrderDTO(OrderProduct op)
+    // {
+    //     Id = op.Order.Id;
+    //     Total = op.Order.Total;
+    //     ClientName = op.Order.ClientName;
+    //     ShippingCity = op.Order.ShippingCity;
+    //     ShippingCountry = op.Order.ShippingCity;
+    //     ShippingAddress = op.Order.ShippingCity;
+    //     ShippingPostalCode = op.Order.ShippingCity;
+    //     ShippingState = op.Order.ShippingCity;
+    //     BillingCity = op.Order.ShippingCity;
+    //     BillingCountry = op.Order.ShippingCity;
+    //     BillingAddress = op.Order.ShippingCity;
+    //     BillingPostalCode = op.Order.ShippingCity;
+    //     BillingState = op.Order.ShippingCity;
+    //     PaymentMethod = op.Order.PaymentMethod;
+    //     PlacedAt = op.Order.PlacedAt.Value.ToShortDateString();
+    //     Products = op.
+    // }
 }

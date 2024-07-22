@@ -64,9 +64,8 @@ type BillingDetails = {
 
 export type Order = {
     id:number;
-    name: string;
-    price: number;
-    quantity: number;
+    total:number;
+    clientName:string;
     shippingCity: string;
     shippingCountry: string;
     shippingAddress: string;
@@ -77,5 +76,19 @@ export type Order = {
     billingAddress: string;
     billingPostalCode: string;
     billingState: string;
-    clientName: string;
+    paymentMethod:string;
+    placedAt:string;
+    products: ProductOrder[];
+}
+type ProductOrder = {
+    id:number;
+    name:string;
+    material:string;
+    description:string;
+    dimensions:string;
+    lightSource:string;
+    price:number;
+    percentOff:number;
+    quantity:number;
+    variant:string;
 }

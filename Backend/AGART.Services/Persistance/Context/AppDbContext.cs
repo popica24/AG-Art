@@ -1,6 +1,7 @@
 using AGART.Domain.Carousel.Models;
 using AGART.Domain.Category.Models;
 using AGART.Domain.Order.Models;
+using AGART.Domain.OrderProduct.Models;
 using AGART.Domain.Product.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ namespace AGART.Services.Persistance.Context
         public DbSet<Variant> Variant { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<CarouselItem> CarouselItem { get; set; }
+        public DbSet<OrderProduct> OrderProduct { get; set; }
         public DbSet<Order> Order { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,6 +30,16 @@ namespace AGART.Services.Persistance.Context
                 .HasOne(v => v.Product)
                 .WithMany(p => p.Variants)
                 .HasForeignKey(v => v.ProductId);
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(o => o.Product)
+                .WithMany(p => p.OrderProducts)
+                .HasForeignKey(o => o.ProductId);
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(o => o.Order)
+                .WithMany(p => p.OrderProducts)
+                .HasForeignKey(o => o.OrderId);
         }
     }
 }

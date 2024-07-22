@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { UserData } from "../../Utils/types";
 import { useAuth } from "../../Contexts/AuthContext";
 import axios from "axios";
-import AccountSettings from "./Pages/AccountSettings";
-import OrderManager from "./Pages/OrderManager";
-import { UserData } from "../../Utils/types";
-import { GoPackageDependencies } from "react-icons/go";
-import { GrUserSettings } from "react-icons/gr";
-import { RiLogoutBoxLine } from "react-icons/ri";
 import { signOut } from "firebase/auth";
 import { auth } from "../../Utils/firebase";
+import AccountCard from "./Components/AccountCard";
+import AccountSettings from "./Pages/AccountSettings";
+import AccountNavigator from "./Components/AccountNavigator";
+import ShippingSettings from "./Pages/ShippingSettings";
+import OrderManager from "./Pages/OrderManager";
 
 const Account = () => {
   const [page, setPage] = useState(1);
@@ -32,7 +32,6 @@ const Account = () => {
   const handleLogout = () => {
     signOut(auth);
   };
-
   return (
     <div className="text-white bg-black mt-[115.71px] md:mt-[110px] z-10">
       <div className="flex justify-start container mx-auto px-8">
@@ -40,45 +39,23 @@ const Account = () => {
           Contul meu
         </span>
       </div>
-      <div className="container p-20 mx-auto">
-        <div className="grid grid-cols-4">
-          <div className="col-span-1">
-            <span className="text-2xl font-thin">
-              Bun venit {userData?.firstName},
-            </span>
-            <div className="flex flex-col bg-white mt-4 p-4 rounded">
-              <span
-                onClick={() => setPage(1)}
-                className={`p-2 text-black inline-flex items-center ${
-                  page == 1 ? "bg-[#f2f2f2]" : " cursor-pointer "
-                }`}
-              >
-                <GoPackageDependencies className="me-1" />
-                Comenzi
-              </span>
-              <span
-                onClick={() => setPage(2)}
-                className={`p-2 mt-4 text-black inline-flex items-center ${
-                  page == 2 ? "bg-[#f2f2f2]" : " cursor-pointer bg-white"
-                }`}
-              >
-                <GrUserSettings className="me-1" />
-                Setari cont
-              </span>
-              <span
-                className="p-2 mt-4 inline-flex items-center cursor-pointer bg-white text-red-500"
-                onClick={() => handleLogout()}
-              >
-                <RiLogoutBoxLine className="me-1" />
-                Delogare
-              </span>
-            </div>
-          </div>
-          <div className="col-span-3 h-full">
-            {page == 1 && <OrderManager customer={userData?.customer} />}
-
-            {page == 2 && <AccountSettings userData={userData} />}
-          </div>
+      <div className="container mx-auto px-8">
+        <AccountNavigator setPage={setPage} page={page} />
+      </div>
+      <div className="flex flex-col lg:grid grid-cols-4 container mx-auto px-8 gap-x-6">
+        <div className="col-span-1">
+          <AccountCard
+            firstName={userData?.firstName}
+            lastName={userData?.lastName}
+            email={currentUser?.email}
+          />
+        </div>
+        <div className="col-span-3">
+          {page == 1 && (
+            <AccountSettings userData={userData} currentUser={currentUser} />
+          )}
+          {page == 2 && <ShippingSettings userData={userData} />}
+          {page == 3 && <OrderManager customer={userData?.customer} />}
         </div>
       </div>
     </div>

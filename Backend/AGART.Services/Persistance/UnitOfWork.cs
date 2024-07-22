@@ -12,6 +12,7 @@ public class UnitOfWork : IUnitOfWork
     public IVariantRepository Variant { get; private set; }
     public ICategoryRepository Category { get; private set; }
     public IOrderRepository Order { get; private set; }
+    public IOrderProduct OrderProduct { get; private set; }
 
     public AppDbContext _context { get; set; }
 
@@ -32,6 +33,7 @@ public class UnitOfWork : IUnitOfWork
         Variant = new VariantRepository(_context);
         Category = new CategoryRepository(_context);
         Order = new OrderRepository(_context);
+        OrderProduct = new OrderProductRepository(_context);
     }
 
     protected virtual void Dispose(bool disposing)

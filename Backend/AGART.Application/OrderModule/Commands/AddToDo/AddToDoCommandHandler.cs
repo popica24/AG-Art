@@ -8,9 +8,6 @@ namespace AGART.Application.OrderModule.Commands.AddToDo
     {
         public async Task<bool> Handle(AddToDoCommand request, CancellationToken cancellationToken)
         {
-            Random random = new Random();
-
-            request.order.Id = random.Next(1000000, 9999999);
             uow.Order.AddAsync(request.order);
 
             await uow.SaveChangesAsync(cancellationToken);

@@ -1,8 +1,7 @@
-import { Button, Drawer, Typography } from "@material-tailwind/react";
+import { Drawer, Typography } from "@material-tailwind/react";
 import { useCart } from "../../Contexts/ShoppingCartContext";
 import CartItem from "./Components/CartItem";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
-import { Link } from "react-router-dom";
 
 type ShoppingCartProps = {
   isOpen: boolean;
