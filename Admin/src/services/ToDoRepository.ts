@@ -1,7 +1,7 @@
-import { ToDoLamp } from "../utils/types";
+import { Order } from "../utils/types";
 import { BaseRepository } from "./BaseRepository";
 
-class ToDoRepository extends BaseRepository<ToDoLamp>{
+class ToDoRepository extends BaseRepository<Order>{
     collection = 'fullorders';
 
     getMany(){

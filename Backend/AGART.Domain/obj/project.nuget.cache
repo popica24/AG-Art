@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Aq41/mt+1dHafiU0b3hYrxSRVJ8OY+SODOxJZmowDJivA4BQKxjiDZ2BY8AZ3d+gHnplMun/mTrlCQqgWVYw6Q==",
+  "dgSpecHash": "HSri6nLZaEZipT29PDPD2HhVjnjMG3UbwM9Z4/svWPfwFzIqsINpTyRUhJ7P7rSaTr1jQvHTgs6reujIU6gliA==",
   "success": true,
-  "projectFilePath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj",
+  "projectFilePath": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj",
   "expectedPackageFiles": [
     "/home/popica/.nuget/packages/erroror/2.0.1/erroror.2.0.1.nupkg.sha512"
   ],

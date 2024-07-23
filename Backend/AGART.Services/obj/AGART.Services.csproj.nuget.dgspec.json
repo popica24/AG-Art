@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/popica/Desktop/AGART.Prod/Backend/AGART.Services/AGART.Services.csproj": {}
+    "/home/popica/Desktop/AG-Art/Backend/AGART.Services/AGART.Services.csproj": {}
   },
   "projects": {
-    "/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/AGART.Application.csproj": {
+    "/home/popica/Desktop/AG-Art/Backend/AGART.Application/AGART.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/AGART.Application.csproj",
+        "projectUniqueName": "/home/popica/Desktop/AG-Art/Backend/AGART.Application/AGART.Application.csproj",
         "projectName": "AGART.Application",
-        "projectPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/AGART.Application.csproj",
+        "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Application/AGART.Application.csproj",
         "packagesPath": "/home/popica/.nuget/packages/",
-        "outputPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/obj/",
+        "outputPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/popica/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj": {
-                "projectPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj"
+              "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj": {
+                "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj"
               }
             }
           }
@@ -83,14 +83,14 @@
         }
       }
     },
-    "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj": {
+    "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj",
+        "projectUniqueName": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj",
         "projectName": "AGART.Domain",
-        "projectPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj",
+        "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj",
         "packagesPath": "/home/popica/.nuget/packages/",
-        "outputPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/",
+        "outputPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/popica/.nuget/NuGet/NuGet.Config"
@@ -142,14 +142,14 @@
         }
       }
     },
-    "/home/popica/Desktop/AGART.Prod/Backend/AGART.Services/AGART.Services.csproj": {
+    "/home/popica/Desktop/AG-Art/Backend/AGART.Services/AGART.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Services/AGART.Services.csproj",
+        "projectUniqueName": "/home/popica/Desktop/AG-Art/Backend/AGART.Services/AGART.Services.csproj",
         "projectName": "AGART.Services",
-        "projectPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Services/AGART.Services.csproj",
+        "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Services/AGART.Services.csproj",
         "packagesPath": "/home/popica/.nuget/packages/",
-        "outputPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Services/obj/",
+        "outputPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Services/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/popica/.nuget/NuGet/NuGet.Config"
@@ -164,11 +164,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/AGART.Application.csproj": {
-                "projectPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Application/AGART.Application.csproj"
+              "/home/popica/Desktop/AG-Art/Backend/AGART.Application/AGART.Application.csproj": {
+                "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Application/AGART.Application.csproj"
               },
-              "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj": {
-                "projectPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj"
+              "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj": {
+                "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj"
               }
             }
           }

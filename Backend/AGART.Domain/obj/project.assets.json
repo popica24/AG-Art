@@ -47,11 +47,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj",
+      "projectUniqueName": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj",
       "projectName": "AGART.Domain",
-      "projectPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/AGART.Domain.csproj",
+      "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj",
       "packagesPath": "/home/popica/.nuget/packages/",
-      "outputPath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Domain/obj/",
+      "outputPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/popica/.nuget/NuGet/NuGet.Config"

@@ -9,6 +9,6 @@ namespace AGART.Application.Common.Interfaces.Persistance
     public interface IOrderProduct : IGenericRepository<OrderProduct>
     {
         IList<IGrouping<int, OrderProduct>> Get(string userId);
-
+        IList<IGrouping<int, OrderProduct>> FullJoin();
     }
 }

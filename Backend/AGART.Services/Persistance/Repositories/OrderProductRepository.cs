@@ -13,4 +13,11 @@ public class OrderProductRepository(AppDbContext context) : GenericRepository<Or
 
         return fullOrders;
     }
+
+    public IList<IGrouping<int, OrderProduct>> FullJoin()
+    {
+        var fullOrders = context.OrderProduct.Include(op => op.Product).Include(op => op.Order).AsNoTracking().GroupBy(o => o.OrderId).ToList();
+
+        return fullOrders;
+    }
 }

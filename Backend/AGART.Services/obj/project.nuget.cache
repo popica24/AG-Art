@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bk6SzrIr1FnEM1hZtZ5Ma+wUBisK4b+QZip+Y6D5YkF9GwkFszYF1/qT/zQupAlRlf1yeLgvtw/aIwVnwlRiyw==",
+  "dgSpecHash": "vpE9IAlUcrJGpChss+MqpOdpIbiwu5XJ2cSa0HMYfQ3frA/rQhQOk70vuu3vNKcXYRzXfqDqMjtsqaNtbfXp4Q==",
   "success": true,
-  "projectFilePath": "/home/popica/Desktop/AGART.Prod/Backend/AGART.Services/AGART.Services.csproj",
+  "projectFilePath": "/home/popica/Desktop/AG-Art/Backend/AGART.Services/AGART.Services.csproj",
   "expectedPackageFiles": [
     "/home/popica/.nuget/packages/aspire.npgsql.entityframeworkcore.postgresql/8.0.1/aspire.npgsql.entityframeworkcore.postgresql.8.0.1.nupkg.sha512",
     "/home/popica/.nuget/packages/erroror/2.0.1/erroror.2.0.1.nupkg.sha512",

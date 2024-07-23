@@ -12,6 +12,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Stripe;
 using Stripe.Checkout;
 
@@ -165,7 +166,8 @@ public class OrdersController(ISender sender) : ControllerBase
 
             Metadata = new Dictionary<string, string>
             {
-                { "UserId", userId }
+                { "UserId", userId },
+                {"ProductData", JsonConvert.SerializeObject(items)}
             },
             AllowPromotionCodes = true,
         };
