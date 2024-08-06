@@ -9,18 +9,16 @@ import MobileSearch from "./MobileSearch";
 import { AiOutlineShopping } from "react-icons/ai";
 import { GoHome } from "react-icons/go";
 import MobileDrawer from "./MobileDrawer";
-import { useCart } from "../../../Contexts/ShoppingCartContext";
 type Props = {
-  openAuth: () => void;
+  openCart: () => void;
 };
 const MobileMenu = (props: Props) => {
-  const { openCart } = useCart();
-
-  const { currentUser } = useAuth();
+  const { currentUser, openAuth } = useAuth();
   const [openSearch, setOpenSearch] = useState(false);
   const [openCatalogue, setOpenCatalogue] = useState(false);
   const closeSearch = () => setOpenSearch(false);
   const closeCatalogue = () => setOpenCatalogue(false);
+
   return (
     <>
       {openCatalogue && (
@@ -47,7 +45,7 @@ const MobileMenu = (props: Props) => {
             <BiSolidFoodMenu size={20} />
             <span>Catalog</span>
           </div>
-          <div className="flex flex-col items-center" onClick={openCart}>
+          <div className="flex flex-col items-center" onClick={props.openCart}>
             <AiOutlineShopping size={22} />
             <span>Cos</span>
           </div>
@@ -58,10 +56,7 @@ const MobileMenu = (props: Props) => {
                 <span>Cont</span>
               </Link>
             ) : (
-              <div
-                onClick={props.openAuth}
-                className="flex flex-col items-center"
-              >
+              <div onClick={openAuth} className="flex flex-col items-center">
                 <IoIosLogIn size={"22px"} />
                 <span>Login</span>
               </div>

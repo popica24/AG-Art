@@ -24,6 +24,8 @@ namespace AGART.Presentation.API.Controllers.V1;
 [Route("api/v{v:apiVersion}/[controller]")]
 public class OrdersController(ISender sender) : ControllerBase
 {
+    const string APP_DOMAIN = "http://localhost:5173";
+
     [HttpGet]
     [Authorize]
     [MapToApiVersion(1)]
@@ -66,8 +68,8 @@ public class OrdersController(ISender sender) : ControllerBase
         }
         if (paymentType == GlobalConstants.PaymentMethod.Cash)
         {
-            await HandleCashPayment(items, user, userId);
-            return Ok();
+            var url = await HandleCashPayment(items, user, userId);
+            return Ok(url);
         }
         return BadRequest("No payment method that is supported was specified.");
 
@@ -110,7 +112,7 @@ public class OrdersController(ISender sender) : ControllerBase
         }
     }
 
-    private async Task HandleCashPayment(CreateOrderRequest[] items, Customer user, string userId)
+    private async Task<string> HandleCashPayment(CreateOrderRequest[] items, Customer user, string userId)
     {
         int total = Enumerable.Sum(items.Select(item => item.price * item.quantity));
 
@@ -131,7 +133,10 @@ public class OrdersController(ISender sender) : ControllerBase
             };
             var orderProductRequest = new AddOrderProductCommand(orderProduct);
             await sender.Send(orderProductRequest);
+
         }
+        return APP_DOMAIN + "?from-checkout-redirect=true"!;
+
     }
 
     private static async Task<string> HandleCardPayment(CreateOrderRequest[] items, Customer user, string userId)
@@ -164,7 +169,7 @@ public class OrdersController(ISender sender) : ControllerBase
             LineItems = lineItems,
             PaymentMethodTypes = ["card"],
             Mode = "payment",
-            SuccessUrl = "http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}",
+            SuccessUrl = APP_DOMAIN + "?from-checkout-redirect=true",
 
             Metadata = new Dictionary<string, string>
             {

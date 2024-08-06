@@ -4,9 +4,9 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FaCheck } from "react-icons/fa";
+import Swal from "sweetalert2";
 type Inputs = {
   email: string;
   password: string;
@@ -17,17 +17,40 @@ type Props = {
 };
 const Login = (props: Props) => {
   const auth = getAuth();
-  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, []);
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       setLoading(true);
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-      setSuccess(true);
-    } catch (err: any) {
-      setLoading(false);
-      setSuccess(false);
+      const result = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      if (result.user) {
+        props.close();
+        Swal.fire({
+          title: "Succes",
+          text: "Te-ai autentificat cu succes",
+          icon: "success",
+        });
+      }
+    } catch (error: any) {
+      if (error.code === "auth/invalid-credential") {
+        Swal.fire({
+          title: "Oops",
+          text: "Email sau parola incorecte. Va rugam sa incercati din nou.",
+          icon: "error",
+        });
+        setLoading(false);
+      }
     }
   };
   const loginWithGoogle = async () => {
@@ -35,9 +58,20 @@ const Login = (props: Props) => {
       const provider = new GoogleAuthProvider();
       auth.languageCode = "RO";
       const result = await signInWithPopup(auth, provider);
-      return result;
-    } catch (error) {
-      console.error("Error during sign-in with Google:", error);
+      if (result.user) {
+        props.close();
+        Swal.fire({
+          title: "Succes",
+          text: "Te-ai autentificat cu succes",
+          icon: "success",
+        });
+      }
+    } catch (error: any) {
+      Swal.fire({
+        title: "Oops",
+        text: "A aparut o eroare.",
+        icon: "error",
+      });
     }
   };
   return (
@@ -131,9 +165,7 @@ const Login = (props: Props) => {
                 type="submit"
                 className="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400"
               >
-                {success ? (
-                  <FaCheck />
-                ) : loading ? (
+                {loading ? (
                   <img src="hourglass.gif" className="h-[20px]" alt="" />
                 ) : (
                   "Autentificare"

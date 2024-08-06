@@ -32,6 +32,7 @@ type RemoveFromCartProps = {
 type ShoppingCartContext = {
   openCart: () => void;
   closeCart: () => void;
+  clearCart: () => void;
   cartQuantity: number;
   cartItems: CartItem[];
   getItemQuantity: (id: number) => number;
@@ -49,6 +50,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+
+  const clearCart = () => setCartItems([]);
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -119,6 +122,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         cartQuantity,
         openCart,
         closeCart,
+        clearCart,
       }}
     >
       {children}

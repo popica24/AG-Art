@@ -42,10 +42,10 @@ public class GetOrderForUserQueryHandler(IUnitOfWork uow) : IRequestHandler<GetO
             };
             foreach (var prod in orderProduct)
             {
-                if (Order.Products.FirstOrDefault(p => p.Id == prod.Product.Id) != null)
-                {
-                    continue;
-                }
+                // if (Order.Products.FirstOrDefault(p => p.Id == prod.Product.Id) != null)
+                // {
+                //     continue;
+                // }
                 Order.Products.Add(new ProductOrderDTO
                 {
                     Id = prod.Product.Id,

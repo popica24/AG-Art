@@ -57,24 +57,20 @@ const ShippingSettings = (props: Props) => {
         },
       });
     });
-    console.log(user);
   };
   return (
-    <div className="p-16 bg-white rounded-xl text-black my-6 md:my-0">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center items-center"
-      >
+    <div className="2xl:p-16 p-8 bg-white rounded-xl text-black my-6 md:my-0">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className=" mb-5 w-full">
           <span className="text-2xl font-thin w-full text-center lg:text-start">
             Detalii Livrare
           </span>
         </div>
-        <div className="flex flex-col lg:flex-row items-center justify-evenly w-full">
-          <div className="max-w-none w-full lg:w-fit lg:max-w-lg">
+        <div className="flex lg:grid grid-cols-3 flex-col justify-center items-center">
+          <div className="w-full md:max-w-sm lg:max-w-10 col-span-1">
             <Input
               {...register("ShippingState")}
-              className="w-full"
+              className="px-2 lg:max-w-48 "
               variant="static"
               label="Judet"
               color="black"
@@ -84,10 +80,10 @@ const ShippingSettings = (props: Props) => {
               crossOrigin={undefined}
             />
           </div>
-          <div className="max-w-none w-full lg:w-fit lg:max-w-lg">
+          <div className="my-4 lg:my-0 w-full md:max-w-sm lg:max-w-12 col-span-1">
             <Input
               {...register("ShippingCity")}
-              className="w-full"
+              className="px-2 lg:max-w-48 "
               variant="static"
               label="Oras"
               color="black"
@@ -97,10 +93,10 @@ const ShippingSettings = (props: Props) => {
               crossOrigin={undefined}
             />
           </div>
-          <div className="max-w-none w-full lg:w-fit lg:max-w-lg">
+          <div className="w-full md:max-w-sm lg:max-w-12 col-span-1">
             <Input
               {...register("ShippingZipCode")}
-              className="w-full"
+              className="px-2 lg:max-w-48 "
               variant="static"
               label="Cod Postal"
               color="black"
@@ -111,11 +107,11 @@ const ShippingSettings = (props: Props) => {
             />
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row items-center justify-start w-full lg:px-12 lg:my-6">
-          <div className="max-w-none w-full lg:w-fit lg:max-w-lg">
+        <div className="flex lg:grid grid-cols-3 flex-col justify-center items-center my-6">
+          <div className=" mb-4 lg:mb-0 w-full md:max-w-sm lg:max-w-12 col-span-1">
             <Input
               {...register("PhoneNumber")}
-              className="w-full"
+              className="px-2 lg:max-w-48"
               variant="static"
               label="Telefon"
               color="black"
@@ -125,43 +121,30 @@ const ShippingSettings = (props: Props) => {
               crossOrigin={undefined}
             />
           </div>
-          <div className="max-w-none w-full lg:w-fit lg:max-w-lg lg:mx-14">
+          <div className="w-full md:max-w-sm col-span-2">
             <Input
-              disabled
-              className="w-full"
+              {...register("ShippingStreet")}
+              className="px-2"
               variant="static"
-              label="Tara"
+              label="Adresa"
               color="black"
-              placeholder={props.userData?.shippingDetails.countryCode}
+              placeholder={props.userData?.shippingDetails.street}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
               crossOrigin={undefined}
             />
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row items-center justify-evenly w-full xl:px-12">
-          <Input
-            {...register("ShippingStreet")}
-            className="w-full"
-            variant="static"
-            label="Adresa"
-            color="black"
-            placeholder={props.userData?.shippingDetails.street}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-            crossOrigin={undefined}
-          />
-        </div>
         <div className=" mb-5 w-full mt-6">
           <span className="text-2xl font-thin w-full text-start">
             Detalii Facturare
           </span>
         </div>
-        <div className="flex flex-col lg:flex-row items-center justify-evenly w-full">
-          <div className="max-w-lg">
+        <div className="flex lg:grid grid-cols-3 flex-col justify-center items-center">
+          <div className="w-full md:max-w-sm lg:max-w-10 col-span-1">
             <Input
               {...register("BillingState")}
-              className="w-full"
+              className="px-2 lg:max-w-48 "
               variant="static"
               label="Judet"
               color="black"
@@ -171,10 +154,10 @@ const ShippingSettings = (props: Props) => {
               crossOrigin={undefined}
             />
           </div>
-          <div className="max-w-lg">
+          <div className="my-4 lg:my-0 w-full md:max-w-sm lg:max-w-12 col-span-1">
             <Input
               {...register("BillingCity")}
-              className="w-full"
+              className="px-2 lg:max-w-48 "
               variant="static"
               label="Oras"
               color="black"
@@ -184,10 +167,10 @@ const ShippingSettings = (props: Props) => {
               crossOrigin={undefined}
             />
           </div>
-          <div className="max-w-lg">
+          <div className="w-full md:max-w-sm lg:max-w-12 col-span-1">
             <Input
               {...register("BillingZipCode")}
-              className="w-full"
+              className="px-2 lg:max-w-48 "
               variant="static"
               label="Cod Postal"
               color="black"
@@ -198,40 +181,22 @@ const ShippingSettings = (props: Props) => {
             />
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row items-center justify-evenly w-full px-12 my-6">
-          <Input
-            {...register("BillingStreet")}
-            className="w-full"
-            variant="static"
-            label="Adresa"
-            color="black"
-            placeholder={props.userData?.billingDetails.street}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-            crossOrigin={undefined}
-          />
-          <div className="max-w-[200px] ms-14">
+        <div className="flex lg:grid grid-cols-3 flex-col justify-center items-center my-6">
+          <div className="w-full md:max-w-sm col-span-2">
             <Input
-              disabled
+              {...register("BillingStreet")}
+              className="px-2"
               variant="static"
-              label="Tara"
+              label="Adresa"
               color="black"
-              placeholder={props.userData?.billingDetails.countryCode}
+              placeholder={props.userData?.billingDetails.street}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
               crossOrigin={undefined}
             />
           </div>
         </div>
-        <div className="flex flex-row items-end justify-end w-full px-8">
-          <Button
-            className="me-4"
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            Renunta
-          </Button>
+        <div className="flex items-center justify-center">
           <Button
             type="submit"
             placeholder={undefined}

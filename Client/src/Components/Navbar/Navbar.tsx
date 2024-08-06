@@ -6,15 +6,30 @@ import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import { useAuth } from "../../Contexts/AuthContext";
 import { IoIosLogIn } from "react-icons/io";
-import Authenticate from "../../Pages/Authenticate/Authenticate";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { openCart, cartQuantity } = useCart();
-  const { currentUser } = useAuth();
+  const { currentUser, openAuth } = useAuth();
   const [searchOpen, setSearchOpen] = useState(false);
-  const [openAuth, setOpenAuth] = useState(false);
+
   const openSearch = () => {
     setSearchOpen(!searchOpen);
+  };
+  const handleCartOpen = () => {
+    if (currentUser && currentUser.uid) {
+      openCart();
+    } else {
+      Swal.fire({
+        title: "Trebuie sa ai un cont pentru a continua",
+        text: "Pentru a avea acces la cosul de cumparaturi trebuie sa fii logat pe contul tau.",
+        icon: "warning",
+      }).then((result) => {
+        if (result.isConfirmed || result.isDismissed) {
+          openAuth();
+        }
+      });
+    }
   };
   return (
     <>
@@ -33,7 +48,7 @@ const Navbar = () => {
 
           <div className="flex flex-row-reverse items-center">
             {" "}
-            <MobileMenu openAuth={() => setOpenAuth(true)} />
+            <MobileMenu openCart={handleCartOpen} />
           </div>
 
           <div className="lg:flex flex-row items-center hidden">
@@ -41,7 +56,7 @@ const Navbar = () => {
               <img src="/search.svg" alt="Search" width={20} height={20} />
             </button>
 
-            <button onClick={openCart} className="relative">
+            <button onClick={handleCartOpen} className="relative">
               <img
                 className="mx-6"
                 src="/shopping.svg"
@@ -58,17 +73,13 @@ const Navbar = () => {
                 <VscAccount size={"20px"} />
               </Link>
             ) : (
-              <span
-                onClick={() => setOpenAuth(true)}
-                className="cursor-pointer"
-              >
+              <span onClick={openAuth} className="cursor-pointer">
                 <IoIosLogIn size={"24px"} />
               </span>
             )}
           </div>
         </div>
       </div>
-      {openAuth && <Authenticate close={() => setOpenAuth(false)} />}
     </>
   );
 };

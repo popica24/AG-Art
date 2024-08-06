@@ -4,9 +4,9 @@ import Homepage from "../Pages/Homepage/Homepage";
 import ProductPage from "../Pages/ProductPage/ProductPage";
 import Product from "../Pages/Product/Product";
 import Results from "../Pages/Results/Results";
-import Success from "../Pages/Success/Success";
 import Checkout from "../Pages/Checkout/Checkout";
 import Account from "../Pages/Account/Account";
+import ProtectedRoute from "../Utils/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,16 +26,20 @@ const router = createBrowserRouter([
         element: <Results />,
       },
       {
-        path: "/success",
-        element: <Success />,
-      },
-      {
         path: "/checkout",
-        element: <Checkout />,
+        element: (
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/account",
-        element: <Account />,
+        element: (
+          <ProtectedRoute>
+            <Account />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/*",

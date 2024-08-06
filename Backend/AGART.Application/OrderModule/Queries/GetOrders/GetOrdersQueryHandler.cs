@@ -40,10 +40,10 @@ namespace AGART.Application.OrderModule.Queries.GetOrders
                 };
                 foreach (var prod in orderProduct)
                 {
-                    if (Order.Products.FirstOrDefault(p => p.Id == prod.Product.Id) != null)
-                    {
-                        continue;
-                    }
+                    // if (Order.Products.FirstOrDefault(p => p.Id == prod.Product.Id) != null)
+                    // {
+                    //     continue;
+                    // }
                     Order.Products.Add(new ProductOrderDTO
                     {
                         Id = prod.Product.Id,

@@ -38,7 +38,7 @@ const Account = () => {
         <AccountNavigator setPage={setPage} page={page} />
       </div>
       <div className="flex flex-col lg:grid grid-cols-4 container mx-auto px-8 gap-x-6">
-        <div className="col-span-1">
+        <div className="col-span-1 mb-8 lg:mb-0">
           <AccountCard
             firstName={userData?.firstName}
             lastName={userData?.lastName}

@@ -54,12 +54,12 @@ const AccountSettings = (props: Props) => {
     return <></>;
   }
   return (
-    <div className="p-16 bg-white rounded-xl text-black my-6 md:my-0">
+    <div className="lg:p-16 p-8 bg-white rounded-xl text-black my-6 md:my-0">
       <div className="flex flex-col justify-center items-center">
         <div className="flex flex-col md:flex-row w-full justify-evenly">
           <div className="max-w-lg mb-6 md:mb-0">
             <Input
-              className="w-full"
+              className="w-full px-2"
               variant="static"
               label="Nume"
               onChange={(e) => setFirstName(e.target.value)}
@@ -71,7 +71,7 @@ const AccountSettings = (props: Props) => {
           </div>
           <div className="max-w-lg">
             <Input
-              className="w-full"
+              className="w-full px-2"
               variant="static"
               label="Prenume"
               onChange={(e) => setLastName(e.target.value)}
@@ -86,7 +86,7 @@ const AccountSettings = (props: Props) => {
           <div className="max-w-lg">
             <Input
               disabled
-              className="w-full"
+              className="w-full px-2"
               variant="static"
               label="Email"
               placeholder={props.currentUser?.email}
@@ -131,7 +131,7 @@ const AccountSettings = (props: Props) => {
             />
           </div>
         </div>
-        <span className="text-sm text-start px-8 my-8">
+        <span className="text-xs md:text-sm text-start md:px-8 my-8">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quos
           distinctio repellat sequi dolore voluptatibus magni obcaecati placeat
           quo sed voluptatum beatae temporibus tempore error animi suscipit

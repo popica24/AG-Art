@@ -22,7 +22,7 @@ const HorizontalCarousel = () => {
     const fetchItems = async () => {
       const carouselItems: Array<CarouselResult> = (
         await axios.get(import.meta.env.VITE_API_URL + "/carousel")
-      ).data; //TO USE REPOSITORY FOR THIS
+      ).data;
 
       const photosRefs = await listAll(ref(imageDb, "carousel"));
       const photosPromises = photosRefs.items.map((photosRef) => {
@@ -30,7 +30,7 @@ const HorizontalCarousel = () => {
       });
       const photos = await Promise.all(photosPromises);
 
-      let items: Array<CarouselProps> = [];
+      const items: Array<CarouselProps> = [];
 
       photos.map((photo, i) => {
         items.push({
@@ -60,6 +60,7 @@ const HorizontalCarousel = () => {
 
   // Calculate the translation based on scroll position
   const translateX = -Math.min(4000, scrollPosition);
+
   if (loading) return;
   if (!items || items.length == 0) return;
   return (
@@ -126,12 +127,12 @@ const HorizontalCarousel = () => {
                 className="md:h-[75vh] h-auto w-[90vmin] md:w-auto aspect-[2/3] flex-shrink-0 me-20 bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
                 style={{
                   transform: `translateX(${translateX}px)`,
-                  backgroundImage: `url(${items[3].url})`,
+                  backgroundImage: `url(${items[4].url})`,
                 }}
               >
                 <div className="absolute h-full w-full top-0 left-0 opacity-25 bg-black dark-shade overflow-hidden" />
                 <span className="z-10 header text-white text-[40px]">
-                  {items[3].name}
+                  {items[4].name}
                 </span>
               </div>
             </div>

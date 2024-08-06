@@ -35,7 +35,7 @@ const Checkout = () => {
     const orderUrl = import.meta.env.VITE_API_URL + "/orders";
     const token = await currentUser?.getIdToken();
     const data = JSON.stringify(cartItems);
-    var url = await axios.post(orderUrl, data, {
+    const url = await axios.post(orderUrl, data, {
       params: {
         customer: userData?.customer,
         userId: currentUser.uid,
@@ -47,9 +47,7 @@ const Checkout = () => {
       },
     });
 
-    if (paymentType == "Card" && url.data) {
-      window.location.href = url.data;
-    }
+    window.location.href = url.data;
   };
   return (
     <div className="text-white bg-black mt-[115.71px] md:mt-[110px] z-10">

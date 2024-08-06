@@ -4,10 +4,28 @@ import AboutUs from "./Components/AboutUs";
 import ProductShowcase from "./Components/ProductShowcase";
 import Banners from "./Components/Banners";
 import { useEffect } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { useCart } from "../../Contexts/ShoppingCartContext";
+import { useAuth } from "../../Contexts/AuthContext";
 const Homepage = () => {
+  const [searchParams] = useSearchParams();
+  const { clearCart } = useCart();
+  const location = useLocation();
+  const { openAuth } = useAuth();
   useEffect(() => {
+    const fromUnauthorizedRedirect: boolean = location.state?.openAuth == true;
+    if (fromUnauthorizedRedirect) {
+      openAuth();
+    }
+    const fromCheckoutRedirect: boolean =
+      searchParams.get("from-checkout-redirect") == "true";
+    if (fromCheckoutRedirect) {
+      clearCart();
+    }
+
     document.title = "AG Art | Homepage";
   }, []);
+
   return (
     <div className="text-white bg-black mt-[115.71px] md:mt-[110px] z-10">
       <div className="flex justify-start container mx-auto px-8">

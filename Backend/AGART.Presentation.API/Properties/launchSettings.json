@@ -22,6 +22,7 @@
       "STRIPE_ES" : "whsec_98223f8e0d6ed4b2f95e6a0b1585a07349f5860e0fdcc6a3b01e5128ac30b4cf",
       "JWT_VALID_ISSUER": "https://securetoken.google.com/agart-dev",
       "JWT_VALID_AUDIENCE": "agart-dev",
+      "APP_DOMAIN" : "http://localhost:5173"
     },
     "https": {
       "commandName": "Project",
@@ -35,6 +36,8 @@
       "STRIPE_ES" : "whsec_98223f8e0d6ed4b2f95e6a0b1585a07349f5860e0fdcc6a3b01e5128ac30b4cf",
       "JWT_VALID_ISSUER": "https://securetoken.google.com/agart-dev",
       "JWT_VALID_AUDIENCE": "agart-dev",
+      "APP_DOMAIN" : "http://localhost:5173"
+
     },
     "IIS Express": {
       "commandName": "IISExpress",

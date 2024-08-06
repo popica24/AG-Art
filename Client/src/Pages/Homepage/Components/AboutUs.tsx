@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const AboutUs = () => {
   const [showSecondImage, setShowSecondImage] = useState(false);
@@ -7,7 +7,6 @@ const AboutUs = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
       const pointX = 5100; // Replace with your desired scroll point
-      console.log(scrollY);
 
       if (scrollY > pointX) {
         setShowSecondImage(true);
