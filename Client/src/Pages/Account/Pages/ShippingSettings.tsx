@@ -1,14 +1,70 @@
+import axios from "axios";
+import { useAuth } from "../../../Contexts/AuthContext";
 import { UserData } from "../../../Utils/types";
 import { Button, Input } from "@material-tailwind/react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 type Props = {
   userData: UserData | null;
 };
-
+type Inputs = {
+  PhoneNumber: string;
+  ShippingStreet: string;
+  ShippingZipCode: string;
+  ShippingCity: string;
+  ShippingCountryCode: string;
+  ShippingState?: string;
+  BillingStreet?: string;
+  BillingZipCode?: string;
+  BillingCity?: string;
+  BillingCountryCode?: string;
+  BillingState?: string;
+};
 const ShippingSettings = (props: Props) => {
+  const { currentUser } = useAuth();
+  const { register, handleSubmit } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const user = {
+      Email: currentUser?.email,
+      FirstName: props.userData?.firstName,
+      LastName: props.userData?.lastName,
+      PhoneNumber: data.PhoneNumber,
+      ShippingDetails: {
+        Phone: data.PhoneNumber,
+        Street: data.ShippingStreet,
+        ZipCode: data.ShippingZipCode,
+        City: data.ShippingCity,
+        CountryCode: "RO",
+        State: data.ShippingState,
+      },
+      BillingDetails: {
+        Street: data.BillingStreet,
+        ZipCode: data.BillingZipCode,
+        City: data.BillingCity,
+        CountryCode: "RO",
+        State: data.BillingState,
+      },
+    };
+
+    currentUser?.getIdToken().then((token) => {
+      axios.put(import.meta.env.VITE_API_URL + "/user", user, {
+        params: {
+          id: props.userData?.customer,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    });
+    console.log(user);
+  };
   return (
     <div className="p-16 bg-white rounded-xl text-black my-6 md:my-0">
-      <div className="flex flex-col justify-center items-center">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col justify-center items-center"
+      >
         <div className=" mb-5 w-full">
           <span className="text-2xl font-thin w-full text-center lg:text-start">
             Detalii Livrare
@@ -17,6 +73,7 @@ const ShippingSettings = (props: Props) => {
         <div className="flex flex-col lg:flex-row items-center justify-evenly w-full">
           <div className="max-w-none w-full lg:w-fit lg:max-w-lg">
             <Input
+              {...register("ShippingState")}
               className="w-full"
               variant="static"
               label="Judet"
@@ -29,6 +86,7 @@ const ShippingSettings = (props: Props) => {
           </div>
           <div className="max-w-none w-full lg:w-fit lg:max-w-lg">
             <Input
+              {...register("ShippingCity")}
               className="w-full"
               variant="static"
               label="Oras"
@@ -41,6 +99,7 @@ const ShippingSettings = (props: Props) => {
           </div>
           <div className="max-w-none w-full lg:w-fit lg:max-w-lg">
             <Input
+              {...register("ShippingZipCode")}
               className="w-full"
               variant="static"
               label="Cod Postal"
@@ -55,6 +114,7 @@ const ShippingSettings = (props: Props) => {
         <div className="flex flex-col lg:flex-row items-center justify-start w-full lg:px-12 lg:my-6">
           <div className="max-w-none w-full lg:w-fit lg:max-w-lg">
             <Input
+              {...register("PhoneNumber")}
               className="w-full"
               variant="static"
               label="Telefon"
@@ -81,6 +141,7 @@ const ShippingSettings = (props: Props) => {
         </div>
         <div className="flex flex-col lg:flex-row items-center justify-evenly w-full xl:px-12">
           <Input
+            {...register("ShippingStreet")}
             className="w-full"
             variant="static"
             label="Adresa"
@@ -99,6 +160,7 @@ const ShippingSettings = (props: Props) => {
         <div className="flex flex-col lg:flex-row items-center justify-evenly w-full">
           <div className="max-w-lg">
             <Input
+              {...register("BillingState")}
               className="w-full"
               variant="static"
               label="Judet"
@@ -111,6 +173,7 @@ const ShippingSettings = (props: Props) => {
           </div>
           <div className="max-w-lg">
             <Input
+              {...register("BillingCity")}
               className="w-full"
               variant="static"
               label="Oras"
@@ -123,6 +186,7 @@ const ShippingSettings = (props: Props) => {
           </div>
           <div className="max-w-lg">
             <Input
+              {...register("BillingZipCode")}
               className="w-full"
               variant="static"
               label="Cod Postal"
@@ -136,6 +200,7 @@ const ShippingSettings = (props: Props) => {
         </div>
         <div className="flex flex-col lg:flex-row items-center justify-evenly w-full px-12 my-6">
           <Input
+            {...register("BillingStreet")}
             className="w-full"
             variant="static"
             label="Adresa"
@@ -168,6 +233,7 @@ const ShippingSettings = (props: Props) => {
             Renunta
           </Button>
           <Button
+            type="submit"
             placeholder={undefined}
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}
@@ -175,7 +241,7 @@ const ShippingSettings = (props: Props) => {
             Salveaza Modificarile
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

@@ -1,4 +1,9 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FaCheck } from "react-icons/fa";
@@ -25,12 +30,22 @@ const Login = (props: Props) => {
       setSuccess(false);
     }
   };
+  const loginWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      auth.languageCode = "RO";
+      const result = await signInWithPopup(auth, provider);
+      return result;
+    } catch (error) {
+      console.error("Error during sign-in with Google:", error);
+    }
+  };
   return (
     <div
       id="login-popup"
       className="bg-black/50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 h-full items-center justify-center flex"
     >
-      <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+      <div className="relative p-4 w-full max-w-md h-auto md:h-auto">
         <div className="relative bg-white rounded-lg shadow">
           <button
             onClick={props.close}
@@ -62,7 +77,10 @@ const Login = (props: Props) => {
               </p>
             </div>{" "}
             <div className="mt-7 flex flex-col gap-2">
-              <button className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+              <button
+                className="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
+                onClick={loginWithGoogle}
+              >
                 <img
                   src="https://www.svgrepo.com/show/475656/google-color.svg"
                   alt="Google"
@@ -78,7 +96,7 @@ const Login = (props: Props) => {
             </div>
             <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
               <label htmlFor="email" className="sr-only">
-                Email address
+                Adresa Email
               </label>
               <input
                 disabled={loading}
@@ -86,11 +104,11 @@ const Login = (props: Props) => {
                 autoComplete="email"
                 required
                 className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                placeholder="Email Address"
+                placeholder="Adresa Email"
                 {...register("email")}
               />
               <label htmlFor="password" className="sr-only">
-                Password
+                Parola
               </label>
               <input
                 disabled={loading}
@@ -98,7 +116,7 @@ const Login = (props: Props) => {
                 autoComplete="current-password"
                 required
                 className="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                placeholder="Password"
+                placeholder="Parola"
                 {...register("password")}
               />
               <p className="mb-3 mt-2 text-sm text-gray-500">

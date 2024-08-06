@@ -156,6 +156,8 @@ public class OrdersController(ISender sender) : ControllerBase
             });
         }
 
+        var itemsData = items.Select(item => new { item.id, item.price, item.quantity, item.variant }).ToList();
+
         var options = new SessionCreateOptions
         {
             Customer = user.Id,
@@ -167,7 +169,7 @@ public class OrdersController(ISender sender) : ControllerBase
             Metadata = new Dictionary<string, string>
             {
                 { "UserId", userId },
-                {"ProductData", JsonConvert.SerializeObject(items)}
+                {"ProductData", JsonConvert.SerializeObject(itemsData)}
             },
             AllowPromotionCodes = true,
         };

@@ -12,13 +12,13 @@ namespace AGART.Presentation.API.Controllers.V1;
 
 [ApiVersion(1)]
 [ApiController]
+[EnableCors("Admin")]
 [Route("api/v{v:apiVersion}/[controller]")]
 public class UserController : ControllerBase
 {
     [HttpPost]
     [Authorize]
     [MapToApiVersion(1)]
-    [EnableCors("User")]
     public async Task<IActionResult> Create(CreateUserRequest request)
     {
         try
@@ -57,7 +57,7 @@ public class UserController : ControllerBase
             };
 
             var service = new CustomerService();
-            service.Create(options);
+            await service.CreateAsync(options);
             return Ok();
         }
         catch (Exception ex)
@@ -120,6 +120,54 @@ public class UserController : ControllerBase
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpPut]
+    [Authorize]
+    [MapToApiVersion(1)]
+    public async Task<IActionResult> Put([FromQuery] string id, [FromBody] UpdateUserRequest request)
+    {
+        try
+        {
+            var customerService = new CustomerService();
+
+            var customerUpdateOptions = new CustomerUpdateOptions
+            {
+                Name = request.FirstName + " " + request.LastName,
+                Phone = request.PhoneNumber,
+                Shipping = new ShippingOptions
+                {
+                    Name = request.FirstName + " " + request.LastName,
+                    Phone = request.PhoneNumber,
+                    Address = new AddressOptions
+                    {
+                        City = request.ShippingDetails.City,
+                        Country = request.ShippingDetails.CountryCode,
+                        Line1 = request.ShippingDetails.Street,
+                        PostalCode = request.ShippingDetails.ZipCode,
+                        State = request.ShippingDetails.State
+                    }
+                },
+                Address = new AddressOptions
+                {
+                    City = request.BillingDetails.City ?? request.ShippingDetails.City,
+                    Country = request.BillingDetails.CountryCode ?? request.ShippingDetails.CountryCode,
+                    Line1 = request.BillingDetails.Street ?? request.ShippingDetails.Street,
+                    PostalCode = request.BillingDetails.ZipCode ?? request.ShippingDetails.ZipCode,
+                    State = request.BillingDetails.State ?? request.ShippingDetails.State
+
+                }
+
+            };
+
+            await customerService.UpdateAsync(id, customerUpdateOptions);
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex);
         }
     }
 }

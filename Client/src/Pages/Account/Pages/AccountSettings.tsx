@@ -1,18 +1,58 @@
 import { Button, Input } from "@material-tailwind/react";
 import { UserData } from "../../../Utils/types";
 import { User } from "firebase/auth";
+import { useState } from "react";
+import { useAuth } from "../../../Contexts/AuthContext";
+import axios from "axios";
 type Props = {
   userData: UserData | null;
   currentUser: User | null | undefined;
 };
 
 const AccountSettings = (props: Props) => {
+  const [firstName, setFirstName] = useState(props.userData?.firstName);
+  const [lastName, setLastName] = useState(props.userData?.lastName);
+  const { currentUser } = useAuth();
+  const updateUser = async () => {
+    const user = {
+      FirstName: firstName,
+      LastName: lastName,
+      PhoneNumber: props.userData?.phoneNumber,
+      ShippingDetails: {
+        Phone: props.userData?.shippingDetails.phone,
+        Street: props.userData?.shippingDetails.street,
+        ZipCode: props.userData?.shippingDetails.zipCode,
+        City: props.userData?.shippingDetails.city,
+        CountryCode: "RO",
+        State: props.userData?.shippingDetails.state,
+      },
+      BillingDetails: {
+        Street: props.userData?.billingDetails.street,
+        ZipCode: props.userData?.billingDetails.zipCode,
+        City: props.userData?.billingDetails.city,
+        CountryCode: "RO",
+        State: props.userData?.billingDetails.state,
+      },
+    };
+
+    currentUser?.getIdToken().then((token) => {
+      axios.put(import.meta.env.VITE_API_URL + "/user", user, {
+        params: {
+          id: props.userData?.customer,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    });
+  };
   if (
     props.currentUser == null ||
-    props.currentUser == undefined ||
-    props.userData == null
-  )
+    props.userData == null ||
+    props.currentUser.email == null
+  ) {
     return <></>;
+  }
   return (
     <div className="p-16 bg-white rounded-xl text-black my-6 md:my-0">
       <div className="flex flex-col justify-center items-center">
@@ -22,7 +62,8 @@ const AccountSettings = (props: Props) => {
               className="w-full"
               variant="static"
               label="Nume"
-              placeholder={props.userData?.firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder={props.userData.firstName}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
               crossOrigin={undefined}
@@ -33,7 +74,8 @@ const AccountSettings = (props: Props) => {
               className="w-full"
               variant="static"
               label="Prenume"
-              placeholder={props.userData?.lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder={props.userData.lastName}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
               crossOrigin={undefined}
@@ -43,6 +85,7 @@ const AccountSettings = (props: Props) => {
         <div className="flex flex-col md:flex-row w-full justify-evenly my-8">
           <div className="max-w-lg">
             <Input
+              disabled
               className="w-full"
               variant="static"
               label="Email"
@@ -54,6 +97,7 @@ const AccountSettings = (props: Props) => {
           </div>
           <div className="max-w-lg hidden md:block md:invisible">
             <Input
+              disabled
               className="w-full"
               variant="static"
               label="Nume"
@@ -76,10 +120,11 @@ const AccountSettings = (props: Props) => {
           </div>
           <div className="max-w-lg hidden md:block md:invisible">
             <Input
+              disabled
               className="w-full"
               variant="static"
               label="Nume"
-              placeholder={props.currentUser.email}
+              placeholder={props.currentUser?.email}
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
               crossOrigin={undefined}
@@ -95,16 +140,9 @@ const AccountSettings = (props: Props) => {
           voluptatibus magni obcaecati placeat quo sed voluptatum beatae
           temporibus tempore error animi suscipit libero, explicabo et.
         </span>
-        <div className="flex flex-row items-end justify-end w-full px-8">
+        <div className="flex flex-row items-center justify-center w-full px-8">
           <Button
-            className="me-4"
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            Renunta
-          </Button>
-          <Button
+            onClick={updateUser}
             placeholder={undefined}
             onPointerEnterCapture={undefined}
             onPointerLeaveCapture={undefined}

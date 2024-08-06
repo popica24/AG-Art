@@ -12,13 +12,12 @@ type Props = {
 const CartItem = (props: Props) => {
   const { removeFromCart } = useCart();
   return (
-    <div className="flex flex-row items-center my-4 shadow-md">
+    <div className="flex flex-row items-center my-4 shadow-md px-3 md:px-1">
       <img
         src={props.imagePath}
         alt={props.variant}
         width={125}
-        height={75}
-        className="object-cover rounded"
+        className="object-cover rounded md:w-[125px] w-[75px] h-auto"
       />
       <div className="flex flex-col items-start w-full">
         <div className="ps-2 font-medium">{props.name}</div>

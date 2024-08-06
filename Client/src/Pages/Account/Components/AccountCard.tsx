@@ -1,4 +1,7 @@
-import React from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../Utils/firebase";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   firstName: string | undefined;
@@ -7,6 +10,22 @@ type Props = {
 };
 
 const AccountCard = (props: Props) => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Esti sigur?",
+      icon: "warning",
+      text: "Veti fi delogat din contul dvs, continuati?",
+      showCancelButton: true,
+      cancelButtonText: "Renunta",
+      confirmButtonText: "Continua",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await signOut(auth);
+        navigate("/");
+      }
+    });
+  };
   if (!props.firstName || !props.lastName || !props.email) {
     return <></>;
   }
@@ -20,7 +39,10 @@ const AccountCard = (props: Props) => {
           {props.firstName + " " + props.lastName}
         </span>
         <span className="text-base">{props.email}</span>
-        <span className="text-sm text-red-500 mt-3 border-b hover:border-b-red-500 cursor-pointer">
+        <span
+          className="text-sm text-red-500 mt-3 border-b hover:border-b-red-500 cursor-pointer"
+          onClick={handleLogout}
+        >
           Iesi din cont
         </span>
       </div>

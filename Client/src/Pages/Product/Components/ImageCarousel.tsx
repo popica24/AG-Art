@@ -10,6 +10,7 @@ import { imageDb } from "../../../Utils/firebase";
 import { Carousel } from "react-responsive-carousel";
 import { useCart } from "../../../Contexts/ShoppingCartContext";
 import { Variant } from "../../../Utils/types";
+import Swal from "sweetalert2";
 
 type Props = {
   id: number | undefined;
@@ -201,6 +202,12 @@ const CarouselItem = (props: CarouselItemProps) => {
           : Number(props.price),
       oldPrice: Number(props.price),
       name: props.name,
+    });
+    Swal.fire({
+      title: "Produsul a fost adaugat in cos!",
+      text: `${props.name} - ${props.variant.name} a fost adaugat in cos.`,
+      icon: "info",
+      confirmButtonText: "Okay",
     });
   };
   return (

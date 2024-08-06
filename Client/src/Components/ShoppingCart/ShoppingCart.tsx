@@ -2,6 +2,7 @@ import { Drawer, Typography } from "@material-tailwind/react";
 import { useCart } from "../../Contexts/ShoppingCartContext";
 import CartItem from "./Components/CartItem";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
+import { CgClose } from "react-icons/cg";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -22,7 +23,7 @@ const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full py-8 sm:py-0">
           {cartItems.length > 0 ? (
             cartItems.map((item, index) => <CartItem key={index} {...item} />)
           ) : (
@@ -31,7 +32,7 @@ const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
             </span>
           )}
           {cartItems.length > 0 && (
-            <div className="ms-auto text-3xl">
+            <div className="ms-auto text-3xl font-thin">
               Total{" "}
               {cartItems.reduce((total, cartItem) => {
                 const item = cartItems.find((i) => i.id === cartItem.id);
@@ -40,6 +41,9 @@ const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
               RON
             </div>
           )}
+          <div className="absolute top-4 right-4 sm:hidden">
+            <CgClose onClick={closeCart} />
+          </div>
           <div className="absolute  bottom-0 left-0 right-0 flex flex-col items-center w-full py-6 bg-black bg-opacity-60 backdrop-blur-sm">
             <a
               href="/checkout"

@@ -75,7 +75,7 @@ const CompleteAccount = (props: Props) => {
       id="login-popup"
       className="bg-black/50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 h-full items-center justify-center flex"
     >
-      <div className="relative p-4 w-full max-w-xl h-full md:h-auto">
+      <div className="relative p-4 w-full max-w-md h-auto md:h-auto">
         <div className="relative bg-white rounded-lg shadow">
           <div className="p-5">
             <h3 className="text-2xl mb-0.5 font-medium"></h3>

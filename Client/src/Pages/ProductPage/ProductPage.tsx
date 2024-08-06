@@ -47,15 +47,14 @@ const ProductPage = () => {
 
   if (badCategory) {
     return (
-      <div className="text-white bg-black mt-[115.71px] md:mt-[110px] z-10">
-        <div className="flex justify-start container mx-auto px-8"></div>
-
-        <div className="container mx-auto py-8">
+      <div className="text-white bg-black z-10">
+        <div className="container py-8 max-w-[90vmin] mx-auto">
           <div className="h-screen flex items-center justify-center">
             <span className="h-screen flex items-center justify-center flex-col">
-              <img src="error.gif" width={80} className="h-auto" />
-              <span className="text-2xl md:text-4xl font-thin mt-4">
-                Aceasta categorie nu exista sau a fost mutata
+              <img src="notfound-category.png" className="h-auto w-96" />
+              <span className="text-2xl md:text-4xl mt-4">
+                Aceasta <b className="text-[#F67D48]">categorie nu exista</b>{" "}
+                sau a fost mutata
               </span>
             </span>
           </div>
@@ -66,15 +65,14 @@ const ProductPage = () => {
 
   if (notFound) {
     return (
-      <div className="text-white bg-black mt-[115.71px] md:mt-[110px] z-10">
-        <div className="flex justify-start container mx-auto px-8"></div>
-
-        <div className="container mx-auto py-8">
+      <div className="text-white bg-black z-10">
+        <div className="container py-8 max-w-[90vmin] mx-auto">
           <div className="h-screen flex items-center justify-center">
             <span className="h-screen flex items-center justify-center flex-col">
-              <img src="error.gif" width={80} className="h-auto" />
-              <span className="text-2xl md:text-4xl font-thin mt-4">
-                Nu s-a gasit vreun produs pentru cerintele dvs.
+              <img src="not-found.png" className="h-auto w-96" />
+              <span className="text-2xl md:text-4xl mt-4">
+                Nu s-a gasit vreun <b className="text-[#F67D48]">produs</b>{" "}
+                pentru cerintele dvs.
               </span>
             </span>
           </div>

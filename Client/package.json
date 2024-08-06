@@ -25,6 +25,7 @@
     "react-query": "^3.39.3",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.23.0",
+    "sweetalert2": "^11.12.4",
     "use-debounce": "^10.0.1"
   },
   "devDependencies": {

@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 type Inputs = {
   Email: string;
   Password: string;
@@ -23,10 +24,17 @@ const CreateAccount = (props: Props) => {
     try {
       setLoading(true);
       await createUserWithEmailAndPassword(auth, data.Email, data.Password);
+      Swal.fire({
+        title: "Succes!",
+        text: "Contul dvs a fost creat cu succes. Mergeti la pasul urmator.",
+        icon: "success",
+        confirmButtonText: "Pasul urmator",
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+      }).then(() => props.nextPanel());
     } catch (err: any) {
       console.error("Error creating user " + err);
     }
-    setTimeout(() => props.nextPanel(), 1000);
   };
   return (
     <div

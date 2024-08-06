@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { UserData } from "../../Utils/types";
 import { useAuth } from "../../Contexts/AuthContext";
 import axios from "axios";
-import { signOut } from "firebase/auth";
-import { auth } from "../../Utils/firebase";
 import AccountCard from "./Components/AccountCard";
 import AccountSettings from "./Pages/AccountSettings";
 import AccountNavigator from "./Components/AccountNavigator";
@@ -29,9 +27,6 @@ const Account = () => {
     fetchUser();
   }, []);
 
-  const handleLogout = () => {
-    signOut(auth);
-  };
   return (
     <div className="text-white bg-black mt-[115.71px] md:mt-[110px] z-10">
       <div className="flex justify-start container mx-auto px-8">

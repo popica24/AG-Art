@@ -35,7 +35,7 @@ const Banners = () => {
   return (
     <div className="z-40">
       <Carousel
-        showThumbs={true}
+        showThumbs={false}
         showStatus={false}
         autoFocus={true}
         autoPlay={true}

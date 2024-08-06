@@ -10,6 +10,7 @@ import { LatestProvider } from "./Contexts/LatestContext";
 import { RecommandedProvider } from "./Contexts/RecommandedContext";
 import { SearchProvider } from "./Contexts/SearchContext";
 import { AuthProvider } from "./Contexts/AuthContext";
+import "sweetalert2/src/sweetalert2.scss";
 
 const queryClient = new QueryClient();
 

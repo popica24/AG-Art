@@ -4,7 +4,7 @@ import Footer from "../Components/Footer/Footer";
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import AnimatedOutlet from "../Components/AnimatedOutlet";
-import Newsletter from "../Components/Newsletter";
+// import Newsletter from "../Components/Newsletter";
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -48,7 +48,7 @@ const Layout = () => {
         >
           <AnimatedOutlet />
         </motion.div>
-        <Newsletter />
+        {/* <Newsletter /> */}
       </AnimatePresence>
       <Footer />
     </>

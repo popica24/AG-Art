@@ -1,18 +1,21 @@
-import { BiSearch, BiSolidFoodMenu } from "react-icons/bi";
+import { BiSolidFoodMenu } from "react-icons/bi";
 import { useAuth } from "../../../Contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { VscAccount } from "react-icons/vsc";
 import { IoIosLogIn } from "react-icons/io";
-import { FiHome, FiSearch } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
 import MobileSearch from "./MobileSearch";
 import { AiOutlineShopping } from "react-icons/ai";
 import { GoHome } from "react-icons/go";
 import MobileDrawer from "./MobileDrawer";
+import { useCart } from "../../../Contexts/ShoppingCartContext";
 type Props = {
   openAuth: () => void;
 };
 const MobileMenu = (props: Props) => {
+  const { openCart } = useCart();
+
   const { currentUser } = useAuth();
   const [openSearch, setOpenSearch] = useState(false);
   const [openCatalogue, setOpenCatalogue] = useState(false);
@@ -44,7 +47,7 @@ const MobileMenu = (props: Props) => {
             <BiSolidFoodMenu size={20} />
             <span>Catalog</span>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center" onClick={openCart}>
             <AiOutlineShopping size={22} />
             <span>Cos</span>
           </div>

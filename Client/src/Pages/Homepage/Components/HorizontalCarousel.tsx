@@ -46,8 +46,6 @@ const HorizontalCarousel = () => {
     fetchItems();
   }, []);
 
-  console.log(items);
-
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY - 502);
@@ -62,7 +60,6 @@ const HorizontalCarousel = () => {
 
   // Calculate the translation based on scroll position
   const translateX = -Math.min(4000, scrollPosition);
-  console.log(items);
   if (loading) return;
   if (!items || items.length == 0) return;
   return (
