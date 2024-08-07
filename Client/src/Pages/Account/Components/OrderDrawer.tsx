@@ -51,11 +51,13 @@ const OrderDrawer = (props: Props) => {
           onPointerEnterCapture={undefined}
           onPointerLeaveCapture={undefined}
         >
-          <div className="container mx-auto p-8 text-black">
-            <div className="grid grid-cols-3">
+          <div className="container mx-auto lg:p-8 text-black overflow-y-scroll lg:max-h-none max-h-[400px]">
+            <div className="flex flex-col lg:grid grid-cols-3 mb-12">
               <div className="col-span-1">
-                <div className="flex flex-col items-start justify-center">
-                  <span className="text-3xl mb-2">Detalii Livrare</span>
+                <div className="flex flex-col items-start justify-center text-sm">
+                  <span className="text-xl lg:text-3xl mb-2">
+                    Detalii Livrare
+                  </span>
                   <span>
                     {props.order?.shippingState}, {props.order?.shippingCity}
                   </span>
@@ -63,7 +65,9 @@ const OrderDrawer = (props: Props) => {
                     {props.order?.shippingAddress} -{" "}
                     {props.order?.shippingPostalCode}
                   </span>
-                  <span className="text-3xl mt-6">Detalii Facturare</span>
+                  <span className="lg:text-3xl mt-6 text-xl">
+                    Detalii Facturare
+                  </span>
                   <span>
                     {props.order?.billingState}, {props.order?.billingCity}
                   </span>
@@ -75,7 +79,9 @@ const OrderDrawer = (props: Props) => {
               </div>
               <div className="col-span-1">
                 <div className="flex flex-col items-start justify-center">
-                  <span className="text-3xl mb-2">Metoda plata</span>
+                  <span className="lg:text-3xl mb-2 lg:mt-0 mt-6 text-xl">
+                    Metoda plata
+                  </span>
                   <span>
                     {props.order?.paymentMethod == "Cash"
                       ? "Plata la livrare (Ramburs)"
@@ -85,7 +91,9 @@ const OrderDrawer = (props: Props) => {
               </div>
               <div className="col-span-1">
                 <div className="flex flex-col items-start justify-center">
-                  <span className="text-3xl mb-2">Articol</span>
+                  <span className="lg:text-3xl text-lg mt-6 lg:mt-0 mb-2">
+                    Articole
+                  </span>
 
                   <div className="flex flex-col overflow-y-scroll max-h-[300px]">
                     {props.order?.products.map((prod, i) => {

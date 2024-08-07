@@ -55,7 +55,10 @@ const AccountSettings = (props: Props) => {
   }
   return (
     <div className="lg:p-16 p-8 bg-white rounded-xl text-black my-6 md:my-0">
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-start lg:justify-center items-start lg:items-center">
+        <span className="text-2xl font-thin w-full lg:text-start mb-8">
+          Detalii Cont
+        </span>
         <div className="flex flex-col md:flex-row w-full justify-evenly">
           <div className="max-w-lg mb-6 md:mb-0">
             <Input
