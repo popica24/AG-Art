@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AGART.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a853616890fccdbca9df2ec578a0b8a370fcb1b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b258850d26b0fc777a47068cdb669d1de886e82")]
 [assembly: System.Reflection.AssemblyProductAttribute("AGART.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AGART.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

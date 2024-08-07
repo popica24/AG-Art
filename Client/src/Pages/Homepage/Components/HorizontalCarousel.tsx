@@ -69,7 +69,7 @@ const HorizontalCarousel = () => {
         className="text-center text-2xl font-thin uppercase my-6 md:my-0"
         data-aos="fade-up"
       >
-        Produse noi
+        Produse de referință
       </h2>
       <div className="scroll-horizontal-section">
         <div className="md:h-[4500px] relative scroll-horizontal">

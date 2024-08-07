@@ -1,4 +1,9 @@
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -16,7 +21,27 @@ const CreateAccount = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm<Inputs>();
   const auth = getAuth();
-
+  const loginWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      auth.languageCode = "RO";
+      const result = await signInWithPopup(auth, provider);
+      if (result.user) {
+        props.close();
+        Swal.fire({
+          title: "Succes",
+          text: "Te-ai autentificat cu succes",
+          icon: "success",
+        });
+      }
+    } catch (error: any) {
+      Swal.fire({
+        title: "Oops",
+        text: "A aparut o eroare.",
+        icon: "error",
+      });
+    }
+  };
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (data.Password !== data.ConfirmPassword) {
       return;

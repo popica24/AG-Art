@@ -107,7 +107,7 @@ const Login = (props: Props) => {
             <p className="mb-4 text-sm font-normal text-gray-800"></p>
             <div className="text-center">
               <p className="mb-3 text-2xl font-semibold leading-5 text-slate-900">
-                Intra in cont
+                Intră în cont
               </p>
             </div>{" "}
             <div className="mt-7 flex flex-col gap-2">
@@ -158,7 +158,7 @@ const Login = (props: Props) => {
                   href="/forgot-password"
                   className="text-blue-800 hover:text-blue-600"
                 >
-                  Reset your password?
+                  Resetează parola?
                 </a>
               </p>
               <button
@@ -178,7 +178,7 @@ const Login = (props: Props) => {
                 className="font-medium text-[#4285f4] cursor-pointer"
                 onClick={props.setRegister}
               >
-                Inregistreaza-te
+                Înregistrează-te
               </span>
             </div>
           </div>

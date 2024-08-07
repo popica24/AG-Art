@@ -21,8 +21,8 @@ const Navbar = () => {
       openCart();
     } else {
       Swal.fire({
-        title: "Trebuie sa ai un cont pentru a continua",
-        text: "Pentru a avea acces la cosul de cumparaturi trebuie sa fii logat pe contul tau.",
+        title: "Trebuie să ai un cont pentru a continuă",
+        text: "Pentru a accesa coșul de cumpărături, te rugăm să te loghezi în contul tău.",
         icon: "warning",
       }).then((result) => {
         if (result.isConfirmed || result.isDismissed) {

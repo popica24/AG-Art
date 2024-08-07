@@ -80,12 +80,12 @@ const OrderDrawer = (props: Props) => {
               <div className="col-span-1">
                 <div className="flex flex-col items-start justify-center">
                   <span className="lg:text-3xl mb-2 lg:mt-0 mt-6 text-xl">
-                    Metoda plata
+                    Metoda Plată
                   </span>
                   <span>
                     {props.order?.paymentMethod == "Cash"
-                      ? "Plata la livrare (Ramburs)"
-                      : "Comanda platita deja (Card)"}
+                      ? "Plată la livrare (Ramburs)"
+                      : "Comanda platită deja (Card)"}
                   </span>
                 </div>
               </div>

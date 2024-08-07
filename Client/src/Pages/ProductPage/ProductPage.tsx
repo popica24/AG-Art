@@ -71,8 +71,8 @@ const ProductPage = () => {
             <span className="h-screen flex items-center justify-center flex-col">
               <img src="not-found.png" className="h-auto w-96" />
               <span className="text-2xl md:text-4xl mt-4">
-                Nu s-a gasit vreun <b className="text-[#F67D48]">produs</b>{" "}
-                pentru cerintele dvs.
+                Nu s-a găsit vreun <b className="text-[#F67D48]">produs</b>{" "}
+                pentru cerințele dvs.
               </span>
             </span>
           </div>

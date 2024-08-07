@@ -28,7 +28,7 @@ const TechnicalSpecs = (props: Props) => {
   return (
     <div className="flex flex-col justify-start container mx-auto px-8 text-white my-4 lg:my-6 font-thin">
       <span className="text-[30px] md:text-[40px] lg:text-[60px] mb-[70px] sm:mb-[100px] lg:mb-[150px]">
-        Specificatii Tehnice
+        Specificații Tehnice
       </span>
       <div className="flex flex-col md:flex-row items-start justify-between">
         <div className="flex flex-col">
@@ -72,7 +72,7 @@ const TechnicalSpecs = (props: Props) => {
               <>
                 <AccordionHeader
                   onClick={() => handleOpen(2)}
-                  children={<span> Sursa de lumina</span>}
+                  children={<span> Sursă de lumină</span>}
                   className="text-white font-thin border-0 hover:text-gray-400"
                   placeholder={undefined}
                   onPointerEnterCapture={undefined}

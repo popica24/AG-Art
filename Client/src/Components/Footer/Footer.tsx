@@ -33,7 +33,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col items-start text-lg mt-2 mb-8 md:mb-0">
-            <span className="text-sm uppercase md:mb-8">Adresa noastra</span>
+            <span className="text-sm uppercase md:mb-8">Adresa noastră</span>
             <span>NET COURSE SCHOOL s.r.l</span>
             <span>I.C. BRATIANU, 24</span>
             <span>+40 758 065 509</span>

@@ -52,21 +52,21 @@ const OrderManager = (props: Props) => {
             Comenzile Mele
           </span>
           <p className="text-xs lg:text-sm text-start w-full font-thin">
-            Apasati click pe o comanda pentru a vizualiza detaliile
+            Apăsați click pe o comandă pentru a vizualiza detaliile
           </p>
           <table className="table-auto w-full text-sm">
-            <thead>
+            <thead className="border-b border-b-gray-300">
               <tr className="text-start">
-                <th className="text-start py-4 whitespace-nowrap">Id</th>
-                <th className="text-start py-4">Data</th>
-                <th className="text-start py-4">Total</th>
+                <th className="text-start pt-4 whitespace-nowrap">Id</th>
+                <th className="text-start pt-4">Data</th>
+                <th className="text-start pt-4">Total</th>
               </tr>
             </thead>
             <tbody>
               {orders?.map((order) => {
                 return (
                   <tr
-                    className="border-b-[0.1px] border-[#adadad] cursor-pointer hover:bg-gray-100 transition-colors"
+                    className="border-b-gray-300 border-b cursor-pointer hover:bg-gray-200 transition-colors"
                     onClick={() => handleOrderOpen(order.id)}
                   >
                     <td className="py-4">#{order.id}</td>

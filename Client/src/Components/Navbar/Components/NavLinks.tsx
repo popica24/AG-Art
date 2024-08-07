@@ -23,7 +23,7 @@ const NavLinks = (props: Props) => {
             Accesorii
           </a>
           <a id="top3" href="#three">
-            Decoratiuni interioare
+            Decorațiuni interioare
           </a>
         </section>
         <section className="text-center">
@@ -37,7 +37,7 @@ const NavLinks = (props: Props) => {
             Lampadare de podea
           </Link>
           <Link to="/lampi-de-masa" className="whitespace-nowrap">
-            Lampi de masa
+            Lămpi de masă
           </Link>
           <Link to="/abajururi-din-lemn" className="whitespace-nowrap">
             Abajururi din lemn

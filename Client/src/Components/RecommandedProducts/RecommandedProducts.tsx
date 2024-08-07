@@ -18,7 +18,7 @@ const RecommandedProducts = () => {
   return (
     <div className="p-8 container mx-auto font-thin">
       <span className="text-[20px] md:text-[30px] lg:text-[50px] mb-[70px] sm:mb-[100px] lg:mb-[150px]">
-        Alti utilizatori au vizualizat si
+        Alți utilizatori au vizualizat și
       </span>
       <div className="flex flex-col sm:flex-row items-center sm:items-stretch sm:flex-wrap justify-center sm:justify-between">
         {items.map((item) => (

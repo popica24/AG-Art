@@ -13,12 +13,12 @@ const AccountCard = (props: Props) => {
   const navigate = useNavigate();
   const handleLogout = () => {
     Swal.fire({
-      title: "Esti sigur?",
+      title: "Ești sigur?",
       icon: "warning",
-      text: "Veti fi delogat din contul dvs, continuati?",
+      text: "Veți fi delogat din contul dvs. Continuați?",
       showCancelButton: true,
-      cancelButtonText: "Renunta",
-      confirmButtonText: "Continua",
+      cancelButtonText: "Renunță",
+      confirmButtonText: "Continuă",
     }).then(async (result) => {
       if (result.isConfirmed) {
         await signOut(auth);
