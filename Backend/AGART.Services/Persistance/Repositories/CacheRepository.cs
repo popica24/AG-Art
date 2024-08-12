@@ -9,8 +9,8 @@ namespace AGART.Services.Persistance.Repositories
         private readonly IDatabase _cacheDb;
         public CacheRepository()
         {
-            // string connectionString = Environment.GetEnvironmentVariable("localhost:6379")!;
-            var redis = ConnectionMultiplexer.Connect("localhost:6379");
+            string connectionString = Environment.GetEnvironmentVariable("REDIS_CONNECTION")!;
+            var redis = ConnectionMultiplexer.Connect(connectionString);
             _cacheDb = redis.GetDatabase();
         }
 

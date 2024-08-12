@@ -67,6 +67,7 @@ const Login = (props: Props) => {
         });
       }
     } catch (error: any) {
+    console.log(error);
       Swal.fire({
         title: "Oops",
         text: "A aparut o eroare.",

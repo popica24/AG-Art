@@ -42,7 +42,7 @@ const ProductPage = () => {
     queryFn: () => fetchData(),
   });
   useEffect(() => {
-    document.title = "AG Art | Catalogue";
+    document.title = "Iluminis | Catalogue";
   }, []);
 
   if (badCategory) {

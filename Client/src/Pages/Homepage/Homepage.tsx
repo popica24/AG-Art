@@ -23,7 +23,7 @@ const Homepage = () => {
       clearCart();
     }
 
-    document.title = "AG Art | Homepage";
+    document.title = "Iluminis | Homepage";
   }, []);
 
   return (

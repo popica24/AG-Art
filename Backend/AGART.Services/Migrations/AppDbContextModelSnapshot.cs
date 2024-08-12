@@ -33,6 +33,9 @@ namespace AGART.Services.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.ToTable("CarouselItem");

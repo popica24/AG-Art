@@ -12,7 +12,7 @@ const Results = () => {
   const [products, setProducts] = useState<Array<ProductCardProps>>();
   const search = useSearch();
   useEffect(() => {
-    document.title = "AG Art | Catalogue";
+    document.title = "Iluminis | Catalogue";
   }, []);
   const fetchProducts = async () => {
     setLoading(true);

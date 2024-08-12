@@ -4,19 +4,20 @@ import { User } from "firebase/auth";
 import { useState } from "react";
 import { useAuth } from "../../../Contexts/AuthContext";
 import axios from "axios";
+import Swal from "sweetalert2";
 type Props = {
   userData: UserData | null;
   currentUser: User | null | undefined;
 };
 
 const AccountSettings = (props: Props) => {
-  const [firstName, setFirstName] = useState(props.userData?.firstName);
-  const [lastName, setLastName] = useState(props.userData?.lastName);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const { currentUser } = useAuth();
   const updateUser = async () => {
     const user = {
-      FirstName: firstName,
-      LastName: lastName,
+      FirstName: firstName == "" ? props.userData?.firstName : firstName,
+      LastName: lastName == "" ? props.userData?.lastName : lastName,
       PhoneNumber: props.userData?.phoneNumber,
       ShippingDetails: {
         Phone: props.userData?.shippingDetails.phone,
@@ -36,16 +37,32 @@ const AccountSettings = (props: Props) => {
     };
 
     currentUser?.getIdToken().then((token) => {
-      axios.put(import.meta.env.VITE_API_URL + "/user", user, {
-        params: {
-          id: props.userData?.customer,
-        },
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      axios
+        .put(import.meta.env.VITE_API_URL + "/user", user, {
+          params: {
+            id: props.userData?.customer,
+          },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(() => {
+          Swal.fire({
+            title: "Succes!",
+            icon: "success",
+            text: "Datele contului au fost modificate !",
+          });
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Oops!",
+            icon: "error",
+            text: "A aparut o eroare, incercati mai tarziu",
+          });
+        });
     });
   };
+
   if (
     props.currentUser == null ||
     props.userData == null ||

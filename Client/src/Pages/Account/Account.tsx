@@ -7,6 +7,7 @@ import AccountSettings from "./Pages/AccountSettings";
 import AccountNavigator from "./Components/AccountNavigator";
 import ShippingSettings from "./Pages/ShippingSettings";
 import OrderManager from "./Pages/OrderManager";
+import ContactManager from "./Pages/ContactManager";
 
 const Account = () => {
   const [page, setPage] = useState(1);
@@ -25,8 +26,8 @@ const Account = () => {
   };
   useEffect(() => {
     fetchUser();
+    document.title = `Iluminis | Contul meu`;
   }, []);
-
   return (
     <div className="text-white bg-black mt-[115.71px] md:mt-[110px] z-10">
       <div className="flex justify-start container mx-auto px-8">
@@ -51,6 +52,9 @@ const Account = () => {
           )}
           {page == 2 && <ShippingSettings userData={userData} />}
           {page == 3 && <OrderManager customer={userData?.customer} />}
+          {page == 4 && (
+            <ContactManager userData={userData} currentUser={currentUser} />
+          )}
         </div>
       </div>
     </div>

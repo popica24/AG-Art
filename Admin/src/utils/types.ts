@@ -95,4 +95,5 @@ export type CarouselProps = {
   id: number;
   name: string;
   url?: string;
+  productId:number
 };

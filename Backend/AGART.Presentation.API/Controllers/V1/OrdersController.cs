@@ -24,7 +24,9 @@ namespace AGART.Presentation.API.Controllers.V1;
 [Route("api/v{v:apiVersion}/[controller]")]
 public class OrdersController(ISender sender) : ControllerBase
 {
-    const string APP_DOMAIN = "http://localhost:5173";
+    readonly string APP_DOMAIN = Environment.GetEnvironmentVariable("APP_DOMAIN");
+
+    const int ShippingFee = 15;
 
     [HttpGet]
     [Authorize]
@@ -81,7 +83,7 @@ public class OrdersController(ISender sender) : ControllerBase
         return new Order
         {
             Id = id,
-            Total = total,
+            Total = total + ShippingFee,
             ClientName = user.Name,
             ShippingCity = user.Shipping.Address.City,
             ShippingCountry = user.Shipping.Address.Country,
@@ -139,7 +141,7 @@ public class OrdersController(ISender sender) : ControllerBase
 
     }
 
-    private static async Task<string> HandleCardPayment(CreateOrderRequest[] items, Customer user, string userId)
+    private async Task<string> HandleCardPayment(CreateOrderRequest[] items, Customer user, string userId)
     {
         var lineItems = new List<SessionLineItemOptions>();
 
@@ -170,7 +172,33 @@ public class OrdersController(ISender sender) : ControllerBase
             PaymentMethodTypes = ["card"],
             Mode = "payment",
             SuccessUrl = APP_DOMAIN + "?from-checkout-redirect=true",
-
+            ShippingOptions =
+    [
+        new() {
+            ShippingRateData = new SessionShippingOptionShippingRateDataOptions
+            {
+                Type = "fixed_amount",
+                FixedAmount = new SessionShippingOptionShippingRateDataFixedAmountOptions
+                {
+                    Amount = ShippingFee * 100,
+                    Currency = "ron",
+                },
+                DisplayName = "Livrare la domiciliu",
+                DeliveryEstimate = new SessionShippingOptionShippingRateDataDeliveryEstimateOptions
+                {
+                    Minimum = new SessionShippingOptionShippingRateDataDeliveryEstimateMinimumOptions
+                    {
+                        Unit = "business_day",
+                        Value = 5,
+                    },
+                    Maximum = new SessionShippingOptionShippingRateDataDeliveryEstimateMaximumOptions
+                    {
+                        Unit = "business_day",
+                        Value = 7,
+                    },
+                },
+            },
+        }],
             Metadata = new Dictionary<string, string>
             {
                 { "UserId", userId },

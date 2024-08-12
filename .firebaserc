@@ -1,0 +1,19 @@
+{
+  "projects": {
+    "default": "agart-dev"
+  },
+  "targets": {
+    "agart-dev": {
+      "hosting": {
+        "client": [
+          "agart-dev"
+        ],
+        "admin": [
+          "iluminis-admin"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

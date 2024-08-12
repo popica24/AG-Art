@@ -32,6 +32,7 @@ const Carousel = () => {
           url: photo,
           name: carouselItems[i].name,
           id: carouselItems[i].id,
+          productId: carouselItems[i].productId,
         });
       });
 
@@ -67,6 +68,7 @@ const CarouselCard = (props: CarouselProps) => {
   const carousel = useCarousel();
   const [newPhoto, setNewPhoto] = useState<Blob | null>(null);
   const [header, setHeader] = useState(props.name);
+  const [productId, setProductId] = useState(props.productId);
   const [hover, setHover] = useState(false);
   const update = async () => {
     try {
@@ -79,6 +81,7 @@ const CarouselCard = (props: CarouselProps) => {
           id: props.id,
           name: header.trim(),
           url: props.url,
+          productId: productId,
         };
         await carousel?.update(props.id, newHeader);
       }
@@ -107,6 +110,11 @@ const CarouselCard = (props: CarouselProps) => {
             value={header}
             onChange={(e) => setHeader(e.target.value)}
           />
+          <input
+            className="focus:border-0 focus:outline-0 bg-transparent text-[40px] z-40 text-white max-w-[300px] text-center relative drop-shadow-xl"
+            value={productId}
+            onChange={(e) => setProductId(Number(e.target.value))}
+          />
         </div>
         {hover && newPhoto === null && (
           <div className="bg-gradient-to-b from-black/0 to-black absolute bottom-0 left-0 h-[250px] w-full">
@@ -127,7 +135,9 @@ const CarouselCard = (props: CarouselProps) => {
             </div>
           </div>
         )}
-        {(header !== props.name || newPhoto !== null) && (
+        {(header !== props.name ||
+          newPhoto !== null ||
+          productId !== props.productId) && (
           <div className="absolute bottom-4 right-4">
             <CgCheck size={"50px"} onClick={() => update()} />
           </div>
@@ -147,18 +157,3 @@ const CarouselCard = (props: CarouselProps) => {
 };
 
 export default Carousel;
-{
-  // <input
-  //         className="focus:border-0 focus:outline-0 bg-transparent text-[40px] z-20 text-black"
-  //         value={header}
-  //         onChange={(e) => setHeader(e.target.value)}
-  //       />
-  /* <div
-        className="md:h-[600px] h-auto aspect-[2/3] flex-shrink-0 bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
-        style={{
-          backgroundImage: `url(${
-            newPhoto ? URL.createObjectURL(newPhoto) : props.url
-          })`,
-        }}
-      ></div> */
-}

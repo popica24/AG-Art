@@ -16,13 +16,16 @@
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5296",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "STRIPE_SK" : "sk_test_51PGTp8B68kIb1rZLBU6Qw5g5kWDH1czC51pqPPJSW1kNGBQNzygQNHfh3oHSSQwdRtwyKKik8v0UF0XL79SN8UzO00Wevko7TQ",
+        "STRIPE_ES" : "whsec_98223f8e0d6ed4b2f95e6a0b1585a07349f5860e0fdcc6a3b01e5128ac30b4cf",
+        "JWT_VALID_ISSUER": "https://securetoken.google.com/agart-dev",
+        "JWT_VALID_AUDIENCE": "agart-dev",
+        "APP_DOMAIN" : "http://localhost:5173",
+        "ADMIN_DOMAIN" : "http://localhost:5174",
+        "REDIS_CONNECTION":"localhost:6379"
       },
-      "STRIPE_SK" : "sk_test_51PGTp8B68kIb1rZLBU6Qw5g5kWDH1czC51pqPPJSW1kNGBQNzygQNHfh3oHSSQwdRtwyKKik8v0UF0XL79SN8UzO00Wevko7TQ",
-      "STRIPE_ES" : "whsec_98223f8e0d6ed4b2f95e6a0b1585a07349f5860e0fdcc6a3b01e5128ac30b4cf",
-      "JWT_VALID_ISSUER": "https://securetoken.google.com/agart-dev",
-      "JWT_VALID_AUDIENCE": "agart-dev",
-      "APP_DOMAIN" : "http://localhost:5173"
+      
     },
     "https": {
       "commandName": "Project",
@@ -31,12 +34,15 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7204;http://localhost:5296",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },"STRIPE_SK" : "sk_test_51PGTp8B68kIb1rZLBU6Qw5g5kWDH1czC51pqPPJSW1kNGBQNzygQNHfh3oHSSQwdRtwyKKik8v0UF0XL79SN8UzO00Wevko7TQ",
-      "STRIPE_ES" : "whsec_98223f8e0d6ed4b2f95e6a0b1585a07349f5860e0fdcc6a3b01e5128ac30b4cf",
-      "JWT_VALID_ISSUER": "https://securetoken.google.com/agart-dev",
-      "JWT_VALID_AUDIENCE": "agart-dev",
-      "APP_DOMAIN" : "http://localhost:5173"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "STRIPE_SK" : "sk_test_51PGTp8B68kIb1rZLBU6Qw5g5kWDH1czC51pqPPJSW1kNGBQNzygQNHfh3oHSSQwdRtwyKKik8v0UF0XL79SN8UzO00Wevko7TQ",
+        "STRIPE_ES" : "whsec_98223f8e0d6ed4b2f95e6a0b1585a07349f5860e0fdcc6a3b01e5128ac30b4cf",
+        "JWT_VALID_ISSUER": "https://securetoken.google.com/agart-dev",
+        "JWT_VALID_AUDIENCE": "agart-dev",
+        "APP_DOMAIN" : "http://localhost:5173",
+        "ADMIN_DOMAIN" : "http://localhost:5174",
+        "REDIS_CONNECTION":"localhost:6379"
+      },
 
     },
     "IIS Express": {

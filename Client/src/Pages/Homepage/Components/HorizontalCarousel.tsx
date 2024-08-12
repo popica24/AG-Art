@@ -2,6 +2,7 @@ import axios from "axios";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { imageDb } from "../../../Utils/firebase";
+import { Link } from "react-router-dom";
 
 type CarouselProps = {
   url: string;
@@ -10,6 +11,7 @@ type CarouselProps = {
 type CarouselResult = {
   id: number;
   name: string;
+  productId: number;
 };
 
 const HorizontalCarousel = () => {
@@ -37,6 +39,7 @@ const HorizontalCarousel = () => {
           url: photo,
           name: carouselItems[i].name,
           id: carouselItems[i].id,
+          productId: carouselItems[i].productId,
         });
       });
 
@@ -75,7 +78,8 @@ const HorizontalCarousel = () => {
         <div className="md:h-[4500px] relative scroll-horizontal">
           <div className="scroll-horizontal__wrap flex sticky top-[110px] md:overflow-hidden overflow-x-auto">
             <div className="scroll-horizontal__content flex">
-              <div
+              <Link
+                to={"/product/" + items[0].productId}
                 className="md:h-[75vh] h-auto w-[90vmin] ms-[430px] md:w-auto aspect-[2/3] flex-shrink-0 me-20 md:ms-[99vw] bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
                 style={{
                   transform: `translateX(${translateX}px)`,
@@ -86,8 +90,9 @@ const HorizontalCarousel = () => {
                 <span className="z-10 header text-white text-[40px]">
                   {items[0].name}
                 </span>
-              </div>
-              <div
+              </Link>
+              <Link
+                to={"/product/" + items[1].productId}
                 className="md:h-[75vh] h-auto w-[90vmin] md:w-auto aspect-[2/3] flex-shrink-0 me-20 bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
                 style={{
                   transform: `translateX(${translateX}px)`,
@@ -98,8 +103,9 @@ const HorizontalCarousel = () => {
                 <span className="z-10 header text-white text-[40px]">
                   {items[1].name}
                 </span>
-              </div>
-              <div
+              </Link>
+              <Link
+                to={"/product/" + items[2].productId}
                 className="md:h-[75vh] h-auto w-[90vmin] md:w-auto aspect-[2/3] flex-shrink-0 me-20 bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
                 style={{
                   transform: `translateX(${translateX}px)`,
@@ -110,8 +116,9 @@ const HorizontalCarousel = () => {
                 <span className="z-10 header text-white text-[40px]">
                   {items[2].name}
                 </span>
-              </div>
-              <div
+              </Link>
+              <Link
+                to={"/product/" + items[3].productId}
                 className="md:h-[75vh] h-auto w-[90vmin] md:w-auto aspect-[2/3] flex-shrink-0 me-20 bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
                 style={{
                   transform: `translateX(${translateX}px)`,
@@ -122,8 +129,9 @@ const HorizontalCarousel = () => {
                 <span className="z-10 header text-white text-[40px]">
                   {items[3].name}
                 </span>
-              </div>
-              <div
+              </Link>
+              <Link
+                to={"/product/" + items[4].productId}
                 className="md:h-[75vh] h-auto w-[90vmin] md:w-auto aspect-[2/3] flex-shrink-0 me-20 bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
                 style={{
                   transform: `translateX(${translateX}px)`,
@@ -134,7 +142,7 @@ const HorizontalCarousel = () => {
                 <span className="z-10 header text-white text-[40px]">
                   {items[4].name}
                 </span>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

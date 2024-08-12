@@ -23,9 +23,9 @@ const Product = () => {
   });
   useEffect(() => {
     if (response?.data?.name)
-      document.title = `AG Art | ${response?.data?.name}`;
-    else{
-      document.title = "AG Art | Loading..."
+      document.title = `Iluminis | ${response?.data?.name}`;
+    else {
+      document.title = "Iluminis | Loading...";
     }
   }, [response?.data?.name]);
   if (

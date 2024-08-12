@@ -9,15 +9,16 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
+using Microsoft.AspNetCore.HttpOverrides;
 
-const string APP_DOMAIN = "http://localhost:5173";
-const string ADMIN_DOMAIN = "http://localhost:5174";
+string APP_DOMAIN = Environment.GetEnvironmentVariable("APP_DOMAIN")!;
+string ADMIN_DOMAIN = Environment.GetEnvironmentVariable("ADMIN_DOMAIN")!;
 
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
 Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
 
-StripeConfiguration.ApiKey = "sk_test_51PGTp8B68kIb1rZLBU6Qw5g5kWDH1czC51pqPPJSW1kNGBQNzygQNHfh3oHSSQwdRtwyKKik8v0UF0XL79SN8UzO00Wevko7TQ";
+StripeConfiguration.ApiKey = Environment.GetEnvironmentVariable("STRIPE_SK");
 
 try
 {
@@ -58,15 +59,15 @@ try
     builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
     {
-        opt.Authority = "https://securetoken.google.com/agart-dev";
+        opt.Authority = Environment.GetEnvironmentVariable("JWT_VALID_ISSUER");
         opt.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = "https://securetoken.google.com/agart-dev",
-            ValidAudience = "agart-dev"
+            ValidIssuer = Environment.GetEnvironmentVariable("JWT_VALID_ISSUER"),
+            ValidAudience = Environment.GetEnvironmentVariable("JWT_VALID_AUDIENCE")
         };
     });
 
@@ -83,11 +84,16 @@ try
         serviceProvider.SeedDatabase();
     }
 
+    app.UseForwardedHeaders(new ForwardedHeadersOptions
+    {
+        ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+    });
+
     app.MapHealthChecks("/health");
 
     app.UseSerilogRequestLogging();
 
-    app.UseHttpsRedirection();
+    //app.UseHttpsRedirection();
 
     app.UseCors();
 

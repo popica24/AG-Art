@@ -3,6 +3,7 @@ import { useAuth } from "../../../Contexts/AuthContext";
 import { UserData } from "../../../Utils/types";
 import { Button, Input } from "@material-tailwind/react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 type Props = {
   userData: UserData | null;
@@ -29,33 +30,78 @@ const ShippingSettings = (props: Props) => {
       Email: currentUser?.email,
       FirstName: props.userData?.firstName,
       LastName: props.userData?.lastName,
-      PhoneNumber: data.PhoneNumber,
+      PhoneNumber:
+        data.PhoneNumber === ""
+          ? props.userData?.phoneNumber
+          : data.PhoneNumber,
       ShippingDetails: {
-        Phone: data.PhoneNumber,
-        Street: data.ShippingStreet,
-        ZipCode: data.ShippingZipCode,
-        City: data.ShippingCity,
+        Phone:
+          data.PhoneNumber === ""
+            ? props.userData?.phoneNumber
+            : data.PhoneNumber,
+        Street:
+          data.ShippingStreet === ""
+            ? props.userData?.shippingDetails.street
+            : data.ShippingStreet,
+        ZipCode:
+          data.ShippingZipCode === ""
+            ? props.userData?.shippingDetails.zipCode
+            : data.ShippingZipCode,
+        City:
+          data.ShippingCity === ""
+            ? props.userData?.shippingDetails.city
+            : data.ShippingCity,
         CountryCode: "RO",
-        State: data.ShippingState,
+        State:
+          data.ShippingState === ""
+            ? props.userData?.shippingDetails.state
+            : data.ShippingState,
       },
       BillingDetails: {
-        Street: data.BillingStreet,
-        ZipCode: data.BillingZipCode,
-        City: data.BillingCity,
+        Street:
+          data.BillingStreet === ""
+            ? props.userData?.billingDetails.street
+            : data.BillingStreet,
+        ZipCode:
+          data.BillingZipCode === ""
+            ? props.userData?.billingDetails.zipCode
+            : data.BillingZipCode,
+        City:
+          data.BillingCity === ""
+            ? props.userData?.billingDetails.city
+            : data.BillingCity,
         CountryCode: "RO",
-        State: data.BillingState,
+        State:
+          data.BillingState === ""
+            ? props.userData?.billingDetails.state
+            : data.BillingState,
       },
     };
 
     currentUser?.getIdToken().then((token) => {
-      axios.put(import.meta.env.VITE_API_URL + "/user", user, {
-        params: {
-          id: props.userData?.customer,
-        },
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      axios
+        .put(import.meta.env.VITE_API_URL + "/user", user, {
+          params: {
+            id: props.userData?.customer,
+          },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(() => {
+          Swal.fire({
+            title: "Succes!",
+            icon: "success",
+            text: "Datele de livrare/facturare au fost modificate !",
+          });
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Oops!",
+            icon: "error",
+            text: "A aparut o eroare, incercati mai tarziu",
+          });
+        });
     });
   };
   return (

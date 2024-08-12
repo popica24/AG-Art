@@ -19,7 +19,7 @@ namespace AGART.Presentation.API.Controllers.V1;
 [Route("api/v{v:apiVersion}/[controller]")]
 public class WebhookController(ISender sender) : ControllerBase
 {
-    readonly string endpointSecret = "whsec_98223f8e0d6ed4b2f95e6a0b1585a07349f5860e0fdcc6a3b01e5128ac30b4cf";
+    readonly string endpointSecret = "whsec_3SC18kbkf8C5QZR8DvUPiHQkvpwxINaq";
 
     [HttpPost]
     public async Task<IActionResult> Index()
@@ -47,7 +47,11 @@ public class WebhookController(ISender sender) : ControllerBase
 
                 var customer = await customerService.GetAsync(checkoutSession.CustomerId);
 
-                await HandleCashPayment(productData, customer, userId);
+                var shippingAmount = checkoutSession.RawJObject["shipping_cost"]["amount_total"].ToObject<long>() / 100;
+
+                await HandleCashPayment(productData, customer, userId, (int)shippingAmount);
+
+                return Ok();
             }
             return BadRequest();
         }
@@ -57,9 +61,9 @@ public class WebhookController(ISender sender) : ControllerBase
         }
     }
 
-    private async Task HandleCashPayment(CreateOrderRequest[] items, Customer user, string userId)
+    private async Task HandleCashPayment(CreateOrderRequest[] items, Customer user, string userId, int shippingAmount)
     {
-        int total = Enumerable.Sum(items.Select(item => item.price * item.quantity));
+        int total = Enumerable.Sum(items.Select(item => item.price * item.quantity)) + shippingAmount;
 
         var orderBody = CreateOrder(user, userId, total);
         var orderRequest = new AddToDoCommand(orderBody);

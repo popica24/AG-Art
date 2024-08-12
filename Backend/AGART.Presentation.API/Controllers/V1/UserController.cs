@@ -132,6 +132,8 @@ public class UserController : ControllerBase
         {
             var customerService = new CustomerService();
 
+            var customer = customerService.Get(id);
+
             var customerUpdateOptions = new CustomerUpdateOptions
             {
                 Name = request.FirstName + " " + request.LastName,

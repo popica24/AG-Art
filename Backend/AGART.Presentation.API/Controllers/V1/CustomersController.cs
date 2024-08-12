@@ -15,7 +15,7 @@ namespace AGART.Presentation.API.Controllers.V1
         [MapToApiVersion(1)]
         public async Task<IActionResult> Get()
         {
-            
+            return Ok();
         }
     }
 }
