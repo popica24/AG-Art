@@ -1,13 +1,9 @@
 using AGART.Application.Common.Utilities;
-using AGART.Application.OrderModule.Commands.AddToDo;
 using AGART.Application.OrderModule.Queries.GetOrdersForUser;
-using AGART.Application.OrderProductModule.Commands;
-using AGART.Domain.Order.Models;
-using AGART.Domain.OrderProduct.Models;
+using AGART.Presentation.API.Common.SharedMethods;
 using AGART.Presentation.API.Models.Order;
 using Asp.Versioning;
 using FirebaseAdmin.Auth;
-using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
@@ -16,7 +12,6 @@ using Newtonsoft.Json;
 using Stripe;
 using Stripe.Checkout;
 
-
 namespace AGART.Presentation.API.Controllers.V1;
 
 [ApiVersion(1)]
@@ -24,7 +19,7 @@ namespace AGART.Presentation.API.Controllers.V1;
 [Route("api/v{v:apiVersion}/[controller]")]
 public class OrdersController(ISender sender) : ControllerBase
 {
-    readonly string APP_DOMAIN = Environment.GetEnvironmentVariable("APP_DOMAIN");
+    readonly string APP_DOMAIN = Environment.GetEnvironmentVariable("APP_DOMAIN")!;
 
     const int ShippingFee = 15;
 
@@ -65,40 +60,16 @@ public class OrdersController(ISender sender) : ControllerBase
 
         if (paymentType == GlobalConstants.PaymentMethod.Card)
         {
-            var url = await HandleCardPayment(items, user, userId);
+            var url = await CreateCheckoutSession(items, user, userId);
             return Ok(url);
         }
         if (paymentType == GlobalConstants.PaymentMethod.Cash)
         {
-            var url = await HandleCashPayment(items, user, userId);
-            return Ok(url);
+            await OrderMethods.AddToDatabase(items, user, userId, ShippingFee, sender);
+            return Ok(APP_DOMAIN + "?from-checkout-redirect=true");
         }
         return BadRequest("No payment method that is supported was specified.");
 
-    }
-
-    private static Order CreateOrder(Customer user, string userId, int total)
-    {
-        var id = new Random().Next(1000000, 9999999);
-        return new Order
-        {
-            Id = id,
-            Total = total + ShippingFee,
-            ClientName = user.Name,
-            ShippingCity = user.Shipping.Address.City,
-            ShippingCountry = user.Shipping.Address.Country,
-            ShippingAddress = user.Shipping.Address.Line1,
-            ShippingPostalCode = user.Shipping.Address.PostalCode,
-            ShippingState = user.Shipping.Address.State,
-            BillingCity = !string.IsNullOrEmpty(user.Address.City) ? user.Address.City : user.Shipping.Address.City,
-            BillingCountry = !string.IsNullOrEmpty(user.Address.Country) ? user.Address.Country : user.Shipping.Address.Country,
-            BillingAddress = !string.IsNullOrEmpty(user.Address.Line1) ? user.Address.Line1 : user.Shipping.Address.Line1,
-            BillingPostalCode = !string.IsNullOrEmpty(user.Address.PostalCode) ? user.Address.PostalCode : user.Shipping.Address.PostalCode,
-            BillingState = !string.IsNullOrEmpty(user.Address.State) ? user.Address.State : user.Shipping.Address.State,
-            Done = false,
-            PlacedAt = DateTime.UtcNow,
-            PaymentMethod = GlobalConstants.PaymentMethod.Cash,
-        };
     }
 
     private static async Task<Customer?> GetCustomerAsync(string customerId)
@@ -108,40 +79,13 @@ public class OrdersController(ISender sender) : ControllerBase
         {
             return await _customerService.GetAsync(customerId);
         }
-        catch (Exception ex)
+        catch
         {
             return null;
         }
     }
 
-    private async Task<string> HandleCashPayment(CreateOrderRequest[] items, Customer user, string userId)
-    {
-        int total = Enumerable.Sum(items.Select(item => item.price * item.quantity));
-
-        var orderBody = CreateOrder(user, userId, total);
-        var orderRequest = new AddToDoCommand(orderBody);
-
-        await sender.Send(orderRequest);
-
-        foreach (var item in items)
-        {
-            var orderProduct = new OrderProduct
-            {
-                ProductId = item.id,
-                ClientId = userId,
-                OrderId = orderBody.Id,
-                Quantity = item.quantity,
-                Variant = item.variant
-            };
-            var orderProductRequest = new AddOrderProductCommand(orderProduct);
-            await sender.Send(orderProductRequest);
-
-        }
-        return APP_DOMAIN + "?from-checkout-redirect=true"!;
-
-    }
-
-    private async Task<string> HandleCardPayment(CreateOrderRequest[] items, Customer user, string userId)
+    private async Task<string> CreateCheckoutSession(CreateOrderRequest[] items, Customer user, string userId)
     {
         var lineItems = new List<SessionLineItemOptions>();
 
@@ -172,33 +116,32 @@ public class OrdersController(ISender sender) : ControllerBase
             PaymentMethodTypes = ["card"],
             Mode = "payment",
             SuccessUrl = APP_DOMAIN + "?from-checkout-redirect=true",
-            ShippingOptions =
-    [
-        new() {
-            ShippingRateData = new SessionShippingOptionShippingRateDataOptions
-            {
-                Type = "fixed_amount",
-                FixedAmount = new SessionShippingOptionShippingRateDataFixedAmountOptions
+            ShippingOptions = [
+            new() {
+                ShippingRateData = new SessionShippingOptionShippingRateDataOptions
                 {
-                    Amount = ShippingFee * 100,
-                    Currency = "ron",
-                },
-                DisplayName = "Livrare la domiciliu",
-                DeliveryEstimate = new SessionShippingOptionShippingRateDataDeliveryEstimateOptions
-                {
-                    Minimum = new SessionShippingOptionShippingRateDataDeliveryEstimateMinimumOptions
+                    Type = "fixed_amount",
+                    DisplayName = "Livrare la domiciliu",
+                    FixedAmount = new SessionShippingOptionShippingRateDataFixedAmountOptions
                     {
-                        Unit = "business_day",
-                        Value = 5,
+                        Amount = ShippingFee * 100,
+                        Currency = "ron",
                     },
-                    Maximum = new SessionShippingOptionShippingRateDataDeliveryEstimateMaximumOptions
+                    DeliveryEstimate = new SessionShippingOptionShippingRateDataDeliveryEstimateOptions
                     {
-                        Unit = "business_day",
-                        Value = 7,
+                        Minimum = new SessionShippingOptionShippingRateDataDeliveryEstimateMinimumOptions
+                        {
+                            Unit = "business_day",
+                            Value = 5,
+                        },
+                        Maximum = new SessionShippingOptionShippingRateDataDeliveryEstimateMaximumOptions
+                        {
+                            Unit = "business_day",
+                            Value = 7,
+                        },
                     },
                 },
-            },
-        }],
+            }],
             Metadata = new Dictionary<string, string>
             {
                 { "UserId", userId },
@@ -208,6 +151,7 @@ public class OrdersController(ISender sender) : ControllerBase
         };
 
         var service = new SessionService();
+
         Session session = await service.CreateAsync(options);
 
         return session.Url;

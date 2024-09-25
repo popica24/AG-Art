@@ -43,10 +43,9 @@ public class ProductController(ISender sender, IMapper mapper) : ControllerBase
     /// This endpoint gets all the products in the database.
     /// </summary>
     /// <respone code="200">Returns the whole product catalogue</respone>
-    [EnableCors("Admin")]
+    [EnableCors("AdminOnly")]
     [MapToApiVersion(1)]
     [HttpGet]
-    // [Authorize]
     public async Task<IActionResult> Get()
     {
         var result = await sender.Send(new GetProductsQuery());
@@ -60,10 +59,10 @@ public class ProductController(ISender sender, IMapper mapper) : ControllerBase
     /// This endpoint creates a product.
     /// </summary>
     /// <respone code="200">Product is created</respone>
-    [EnableCors("Admin")]
+    [EnableCors("AdminOnly")]
     [MapToApiVersion(1)]
     [HttpPost]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> Post(CreateProductRequest request)
     {
         var createProductCommand = mapper.Map<CreateProductCommand>(request);
@@ -78,10 +77,10 @@ public class ProductController(ISender sender, IMapper mapper) : ControllerBase
     /// This endpoint updates a product.
     /// </summary>
     /// <respone code="200">Product is updated</respone>
-    [EnableCors("Admin")]
+    [EnableCors("AdminOnly")]
     [MapToApiVersion(1)]
     [HttpPut("{id}")]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> Update(int id, ProductUpdateParams parameters)
     {
         var product = mapper.Map<Product>(parameters);
