@@ -992,7 +992,10 @@
           "Stripe.net": "45.1.0"
         },
         "runtime": {
-          "AGART.Application.dll": {}
+          "AGART.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "AGART.Domain/1.0.0": {
@@ -1000,7 +1003,10 @@
           "ErrorOr": "2.0.1"
         },
         "runtime": {
-          "AGART.Domain.dll": {}
+          "AGART.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

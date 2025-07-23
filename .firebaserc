@@ -1,19 +1,18 @@
 {
   "projects": {
-    "default": "agart-dev"
+    "default": "iluminis-5732c"
   },
   "targets": {
-    "agart-dev": {
+    "iluminis-5732c": {
       "hosting": {
-        "client": [
-          "agart-dev"
+        "main": [
+          "iluminis-5732c"
         ],
         "admin": [
-          "iluminis-admin"
+          "iluminis-admin-cd016"
         ]
       }
     }
   },
-  "etags": {},
-  "dataconnectEmulatorConfig": {}
+  "etags": {}
 }

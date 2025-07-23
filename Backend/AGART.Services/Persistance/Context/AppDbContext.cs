@@ -20,23 +20,27 @@ namespace AGART.Services.Persistance.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Product>()
+            modelBuilder
+                .Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Variant>()
+            modelBuilder
+                .Entity<Variant>()
                 .HasOne(v => v.Product)
                 .WithMany(p => p.Variants)
                 .HasForeignKey(v => v.ProductId);
 
-            modelBuilder.Entity<OrderProduct>()
+            modelBuilder
+                .Entity<OrderProduct>()
                 .HasOne(o => o.Product)
                 .WithMany(p => p.OrderProducts)
                 .HasForeignKey(o => o.ProductId);
 
-            modelBuilder.Entity<OrderProduct>()
+            modelBuilder
+                .Entity<OrderProduct>()
                 .HasOne(o => o.Order)
                 .WithMany(p => p.OrderProducts)
                 .HasForeignKey(o => o.OrderId);

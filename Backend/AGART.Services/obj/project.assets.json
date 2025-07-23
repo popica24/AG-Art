@@ -3825,19 +3825,19 @@
     ]
   },
   "packageFolders": {
-    "/home/popica/.nuget/packages/": {}
+    "C:\\Users\\Popica\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/popica/Desktop/AG-Art/Backend/AGART.Services/AGART.Services.csproj",
+      "projectUniqueName": "C:\\Users\\Popica\\Desktop\\AG-Art\\Backend\\AGART.Services\\AGART.Services.csproj",
       "projectName": "AGART.Services",
-      "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Services/AGART.Services.csproj",
-      "packagesPath": "/home/popica/.nuget/packages/",
-      "outputPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Services/obj/",
+      "projectPath": "C:\\Users\\Popica\\Desktop\\AG-Art\\Backend\\AGART.Services\\AGART.Services.csproj",
+      "packagesPath": "C:\\Users\\Popica\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Popica\\Desktop\\AG-Art\\Backend\\AGART.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/popica/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Popica\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -3849,11 +3849,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/popica/Desktop/AG-Art/Backend/AGART.Application/AGART.Application.csproj": {
-              "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Application/AGART.Application.csproj"
+            "C:\\Users\\Popica\\Desktop\\AG-Art\\Backend\\AGART.Application\\AGART.Application.csproj": {
+              "projectPath": "C:\\Users\\Popica\\Desktop\\AG-Art\\Backend\\AGART.Application\\AGART.Application.csproj"
             },
-            "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj": {
-              "projectPath": "/home/popica/Desktop/AG-Art/Backend/AGART.Domain/AGART.Domain.csproj"
+            "C:\\Users\\Popica\\Desktop\\AG-Art\\Backend\\AGART.Domain\\AGART.Domain.csproj": {
+              "projectPath": "C:\\Users\\Popica\\Desktop\\AG-Art\\Backend\\AGART.Domain\\AGART.Domain.csproj"
             }
           }
         }
@@ -3862,6 +3862,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -3909,7 +3914,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

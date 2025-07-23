@@ -1,15 +1,20 @@
-using StackExchange.Redis;
 using AGART.Application.Common.Interfaces.Persistance;
 using Newtonsoft.Json;
+using StackExchange.Redis;
 
 namespace AGART.Services.Persistance.Repositories
 {
     public class CacheRepository : ICacheRepository
     {
         private readonly IDatabase _cacheDb;
+
         public CacheRepository()
         {
             string connectionString = Environment.GetEnvironmentVariable("REDIS_CONNECTION")!;
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                connectionString = "redis:6379"; // fallback for Docker
+            }
             var redis = ConnectionMultiplexer.Connect(connectionString);
             _cacheDb = redis.GetDatabase();
         }
@@ -20,7 +25,6 @@ namespace AGART.Services.Persistance.Repositories
             if (!string.IsNullOrEmpty(value))
                 return JsonConvert.DeserializeObject<T>(value);
             return default;
-
         }
 
         public object RemoveData(string key)

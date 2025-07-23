@@ -24,3 +24,16 @@
 /home/popica/Desktop/AG-Art/Backend/AGART.Domain/obj/Debug/net8.0/refint/AGART.Domain.dll
 /home/popica/Desktop/AG-Art/Backend/AGART.Domain/obj/Debug/net8.0/AGART.Domain.pdb
 /home/popica/Desktop/AG-Art/Backend/AGART.Domain/obj/Debug/net8.0/ref/AGART.Domain.dll
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\bin\Debug\net8.0\AGART.Domain.deps.json
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\bin\Debug\net8.0\AGART.Domain.dll
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\bin\Debug\net8.0\AGART.Domain.pdb
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\AGART.Domain.csproj.AssemblyReference.cache
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\AGART.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\AGART.Domain.AssemblyInfoInputs.cache
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\AGART.Domain.AssemblyInfo.cs
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\AGART.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\AGART.Domain.sourcelink.json
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\AGART.Domain.dll
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\refint\AGART.Domain.dll
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\AGART.Domain.pdb
+C:\Users\Popica\Desktop\AG-Art\Backend\AGART.Domain\obj\Debug\net8.0\ref\AGART.Domain.dll
